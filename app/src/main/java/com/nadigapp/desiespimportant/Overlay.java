@@ -1,14 +1,21 @@
 package com.nadigapp.desiespimportant;
 
-import android.annotation.*;
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.os.*;
-import android.view.*;
-import java.io.*;
+import android.annotation.SuppressLint;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.os.Build;
+import android.os.IBinder;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.WindowManager;
 
-import java.lang.Process;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 
 public class Overlay extends Service {
@@ -29,7 +36,30 @@ static Context ctx;
     public void onCreate() {
         super.onCreate();
         ctx=this;
-		Start(ctx,1,1);
+        if (MainActivity.gameType == 1 && MainActivity.is32) {
+            Start(ctx,1,1);
+        }
+        else if (MainActivity.gameType == 1 && MainActivity.is64) {
+            Start(ctx,1,2);
+        }
+        else if (MainActivity.gameType == 2 && MainActivity.is32) {
+            Start(ctx,2,1);
+        }
+        else if (MainActivity.gameType == 2 && MainActivity.is64) {
+            Start(ctx,2,2);
+        }
+        else if (MainActivity.gameType == 3 && MainActivity.is32) {
+            Start(ctx,3,1);
+        }
+        else if (MainActivity.gameType == 3 && MainActivity.is64) {
+            Start(ctx,3,2);
+        }
+        else if (MainActivity.gameType == 4 && MainActivity.is32) {
+            Start(ctx,4,1);
+        }
+        else if (MainActivity.gameType == 4 && MainActivity.is64) {
+            Start(ctx,4,2);
+        }
         windowManager = (WindowManager) ctx.getSystemService(Context.WINDOW_SERVICE);
         overlayView = new ESPView(ctx);
       //  mFloatingView = LayoutInflater.from(ctx).inflate(R.layout.float_view, null);

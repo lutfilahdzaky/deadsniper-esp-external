@@ -19,8 +19,8 @@ import java.lang.Process;
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 	
 	String gameName="com.tencent.ig";
-	int gameType=1;
-	int bit=1;
+	static int gameType=1;
+	static int bit=1;
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -317,18 +317,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
 
 						startPatcher();
-						if(gameType == 4) {
-							startService(new Intent(this, OverlayTW.class));
-						}
-						else if(gameType == 3) {
-							startService(new Intent(this, OverlayVN.class));
-						}
-						else if(gameType == 2) {
-							startService(new Intent(this, OverlayKR.class));
-						}
-						else {
-							startService(new Intent(this, Overlay.class));
-						}
+						startService(new Intent(this, Overlay.class));
+
 						// ShowFloatWindow();   
 
 

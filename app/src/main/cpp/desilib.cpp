@@ -12,49 +12,9 @@ Java_com_nadigapp_desiespimportant_Overlay_DrawOn(JNIEnv *env, jclass , jobject 
         DrawESP(espOverlay, espOverlay.getWidth(), espOverlay.getHeight());
     }
 }
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_nadigapp_desiespimportant_OverlayKR_DrawOn(JNIEnv *env, jclass , jobject espView, jobject canvas) {
-    espOverlay = ESP(env, espView, canvas);
-    if (espOverlay.isValid()){
-        DrawESP(espOverlay, espOverlay.getWidth(), espOverlay.getHeight());
-    }
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_nadigapp_desiespimportant_OverlayVN_DrawOn(JNIEnv *env, jclass , jobject espView, jobject canvas) {
-    espOverlay = ESP(env, espView, canvas);
-    if (espOverlay.isValid()){
-        DrawESP(espOverlay, espOverlay.getWidth(), espOverlay.getHeight());
-    }
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_nadigapp_desiespimportant_OverlayTW_DrawOn(JNIEnv *env, jclass , jobject espView, jobject canvas) {
-    espOverlay = ESP(env, espView, canvas);
-    if (espOverlay.isValid()){
-        DrawESP(espOverlay, espOverlay.getWidth(), espOverlay.getHeight());
-    }
-}
-
 extern "C" JNIEXPORT void JNICALL
 Java_com_nadigapp_desiespimportant_Overlay_Close(JNIEnv *,  jobject ) {
    Close();
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_nadigapp_desiespimportant_OverlayKR_Close(JNIEnv *,  jobject ) {
-    Close();
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_nadigapp_desiespimportant_OverlayTW_Close(JNIEnv *,  jobject ) {
-    Close();
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_nadigapp_desiespimportant_OverlayVN_Close(JNIEnv *,  jobject ) {
-    Close();
 }
 extern "C" JNIEXPORT void JNICALL
 Java_com_nadigapp_desiespimportant_FloatLogo_SettingValue(JNIEnv *,  jobject ,jint code,jboolean jboolean1) {
@@ -107,90 +67,6 @@ Java_com_nadigapp_desiespimportant_Overlay_getReady(JNIEnv *, jclass ,int typeof
         sv.type=utype;
         send((void*)&sv,sizeof(sv));
        // Close();
-        return true;
-    }
-
-}
-
-extern "C" JNIEXPORT jboolean JNICALL
-Java_com_nadigapp_desiespimportant_OverlayKR_getReady(JNIEnv *, jclass ,int typeofgame) {
-    int sockCheck=1;
-    if (!Create()) {
-        perror("Creation failed");
-        return false;
-    }
-    setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,&sockCheck, sizeof(int));
-    if (!Bind()) {
-        perror("Bind failed");
-        return false;
-    }
-
-    if (!Listen()) {
-        perror("Listen failed");
-        return false;
-    }
-    if (Accept()) {
-        SetValue sv{};
-        sv.mode=typeofgame;
-        sv.type=utype;
-        send((void*)&sv,sizeof(sv));
-        // Close();
-        return true;
-    }
-
-}
-
-extern "C" JNIEXPORT jboolean JNICALL
-Java_com_nadigapp_desiespimportant_OverlayTW_getReady(JNIEnv *, jclass ,int typeofgame) {
-    int sockCheck=1;
-    if (!Create()) {
-        perror("Creation failed");
-        return false;
-    }
-    setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,&sockCheck, sizeof(int));
-    if (!Bind()) {
-        perror("Bind failed");
-        return false;
-    }
-
-    if (!Listen()) {
-        perror("Listen failed");
-        return false;
-    }
-    if (Accept()) {
-        SetValue sv{};
-        sv.mode=typeofgame;
-        sv.type=utype;
-        send((void*)&sv,sizeof(sv));
-        // Close();
-        return true;
-    }
-
-}
-
-extern "C" JNIEXPORT jboolean JNICALL
-Java_com_nadigapp_desiespimportant_OverlayVN_getReady(JNIEnv *, jclass ,int typeofgame) {
-    int sockCheck=1;
-    if (!Create()) {
-        perror("Creation failed");
-        return false;
-    }
-    setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,&sockCheck, sizeof(int));
-    if (!Bind()) {
-        perror("Bind failed");
-        return false;
-    }
-
-    if (!Listen()) {
-        perror("Listen failed");
-        return false;
-    }
-    if (Accept()) {
-        SetValue sv{};
-        sv.mode=typeofgame;
-        sv.type=utype;
-        send((void*)&sv,sizeof(sv));
-        // Close();
         return true;
     }
 
