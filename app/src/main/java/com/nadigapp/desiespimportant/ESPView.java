@@ -1,6 +1,5 @@
 package com.nadigapp.desiespimportant;
 
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,89 +27,103 @@ public class ESPView extends View implements Runnable {
     Paint mTextPaint3;
     Paint p;
     Thread mThread;
-    Bitmap bitmap,out,bitmap2,out2;
+    Bitmap bitmap, out, bitmap2, out2;
     int FPS = 60;
-    private  static int Pos;
-    private  static int Size;
-    private  static int Strokebox;
-    private  static int Strokeskel;
-    private  static int Strokeline;
-    private static int ColorBox,ColorSkel,ColorHead,ColorLine,ColorAlert,ColorAlertText,bgname,bgdistance,bgEnWeapon,bgid,textname,textdistance,textenweapon;
-    private  static int itemSize,itemPosition;
+    private static int Pos;
+    private static int Size;
+    private static int Strokebox;
+    private static int Strokeskel;
+    private static int Strokeline;
+    private static int ColorBox, ColorSkel, ColorHead, ColorLine, ColorAlert, ColorAlertText, bgname, bgdistance, bgEnWeapon, bgid, textname, textdistance, textenweapon;
+    private static int itemSize, itemPosition;
     static long sleepTime;
     Date time;
     SimpleDateFormat formatter;
-    private int    mFPS = 0;
-    private int    mFPSCounter = 0;
-    private long   mFPSTime = 0;
+    private int mFPS = 0;
+    private int mFPSCounter = 0;
+    private long mFPSTime = 0;
 
-    public static void ChangeFps(int fps){
-        sleepTime =1000/(20+fps);
+    public static void ChangeFps(int fps) {
+        sleepTime = 1000 / (20 + fps);
     }
 
-    public static void ChangePosition(int position){
+    public static void ChangePosition(int position) {
         Pos = position;
     }
 
-    public static void ChangeSize(int size){
+    public static void ChangeSize(int size) {
         Size = size;
     }
 
-    public static void ChangeitemPosition(int itemposition){
+    public static void ChangeitemPosition(int itemposition) {
         itemPosition = itemposition;
     }
 
-    public static void ChangeitemSize(int itemsize){
+    public static void ChangeitemSize(int itemsize) {
         itemSize = itemsize;
     }
 
-    public static void ChangeStrokeBox(int strokebox){ Strokebox = strokebox; }
-    public static void ChangeStrokeSkel(int strokeskel){
+    public static void ChangeStrokeBox(int strokebox) {
+        Strokebox = strokebox;
+    }
+
+    public static void ChangeStrokeSkel(int strokeskel) {
         Strokeskel = strokeskel;
     }
-    public static void ChangeStrokeLine(int strokeline){
+
+    public static void ChangeStrokeLine(int strokeline) {
         Strokeline = strokeline;
     }
 
-    public static void ChangeColorBox(int colorBox){
+    public static void ChangeColorBox(int colorBox) {
         ColorBox = colorBox;
     }
-    public static void ChangeColorSkel(int colorSkel){
+
+    public static void ChangeColorSkel(int colorSkel) {
         ColorSkel = colorSkel;
     }
-    public static void ChangeColorHead(int colorHead){
+
+    public static void ChangeColorHead(int colorHead) {
         ColorHead = colorHead;
     }
-    public static void ChangeColorLine(int colorLine){
+
+    public static void ChangeColorLine(int colorLine) {
         ColorLine = colorLine;
     }
-    public static void ChangeColorAlert(int colorAlert){
+
+    public static void ChangeColorAlert(int colorAlert) {
         ColorAlert = colorAlert;
     }
-    public static void ChangeColorAlertText(int colorAlertText){
+
+    public static void ChangeColorAlertText(int colorAlertText) {
         ColorAlertText = colorAlertText;
     }
 
-    public static void ChangeBgName(int BGName){
+    public static void ChangeBgName(int BGName) {
         bgname = BGName;
     }
-    public static void ChangeBgId(int BGId){
+
+    public static void ChangeBgId(int BGId) {
         bgid = BGId;
     }
-    public static void ChangeBgDist(int BGDist){
+
+    public static void ChangeBgDist(int BGDist) {
         bgdistance = BGDist;
     }
-    public static void ChangeBgEnWeapon(int BGEnWeapon){
+
+    public static void ChangeBgEnWeapon(int BGEnWeapon) {
         bgEnWeapon = BGEnWeapon;
     }
 
-    public static void ChangeTextName(int TextName){
+    public static void ChangeTextName(int TextName) {
         textname = TextName;
     }
-    public static void ChangeTextDist(int TextDist){
+
+    public static void ChangeTextDist(int TextDist) {
         textdistance = TextDist;
     }
-    public static void ChangeTextEnWeapon(int TextEnWeapon){
+
+    public static void ChangeTextEnWeapon(int TextEnWeapon) {
         textenweapon = TextEnWeapon;
     }
 
@@ -143,7 +156,6 @@ public class ESPView extends View implements Runnable {
             Overlay.DrawOn(this, canvas);
         }
     }
-
 
     @Override
     public void run() {
@@ -205,17 +217,15 @@ public class ESPView extends View implements Runnable {
         mTextPaint3.setTextAlign(Paint.Align.CENTER);
         mTextPaint3.setStrokeWidth(1.1f);
 
-        p=new Paint();
+        p = new Paint();
         final int bitmap_count_oth = OTHER.length;
 
-        for(int i = 0 ; i < bitmap_count_oth ; i++)
-        {
+        for (int i = 0; i < bitmap_count_oth; i++) {
             OTHER[i] = BitmapFactory.decodeResource(getResources(), OTH_NAME[i]);
-            if(i == 4){
-                OTHER[i] = scale(OTHER[i],500,400);
-            }
-            else{
-                OTHER[i] = scale(OTHER[i],80,80);
+            if (i == 4) {
+                OTHER[i] = scale(OTHER[i], 500, 400);
+            } else {
+                OTHER[i] = scale(OTHER[i], 80, 80);
             }
         }
     }
@@ -236,7 +246,7 @@ public class ESPView extends View implements Runnable {
         mStrokePaint.setColor(Color.rgb(r, g, b));
         mStrokePaint.setAlpha(a);
         mStrokePaint.setStrokeWidth(lineWidth);
-        mStrokePaint.setColor(Color.rgb(0,255,255));
+        mStrokePaint.setColor(Color.rgb(0, 255, 255));
         cvs.drawLine(fromX, fromY, toX, toY, mStrokePaint);
     }
 
@@ -252,16 +262,18 @@ public class ESPView extends View implements Runnable {
         mStrokePaint.setStrokeWidth(stroke);
         mStrokePaint.setColor(Color.rgb(r, g, b));
         mStrokePaint.setAlpha(a);
-        cvs.drawRect(x, y,  width,  height, mStrokePaint);
+        cvs.drawRect(x, y, width, height, mStrokePaint);
     }
+
     public void DrawBox(Canvas cvs, int a, int r, int g, int b, float stroke, float x, float y, float width, float height) {
         mStrokePaint.setStrokeWidth(Strokebox);
         mStrokePaint.setColor(Color.rgb(r, g, b));
         mStrokePaint.setAlpha(a);
         mStrokePaint.setColor(ColorBox);
-        cvs.drawRect(x, y,  width,  height, mStrokePaint);
+        cvs.drawRect(x, y, width, height, mStrokePaint);
         //}
     }
+
     public void DrawFilledRect(Canvas cvs, int a, int r, int g, int b, float x, float y, float width, float height) {
         mFilledPaint.setColor(Color.rgb(r, g, b));
         mFilledPaint.setAlpha(a);
@@ -271,20 +283,18 @@ public class ESPView extends View implements Runnable {
     public void DrawFilledRect3(Canvas cvs, int a, int r, int g, int b, float x, float y, float width, float height) {
         mFilledPaint2.setColor(Color.rgb(r, g, b));
         mFilledPaint2.setAlpha(a);
-        cvs.drawRect(x-65, y-5-Pos, width+65, height-3-Pos, mFilledPaint2);
+        cvs.drawRect(x - 65, y - 5 - Pos, width + 65, height - 3 - Pos, mFilledPaint2);
     }
 
     public void DrawRect2(Canvas cvs, int a, int r, int g, int b, float stroke, float x, float y, float width, float height) {
         mStrokePaint2.setStrokeWidth(stroke);
         mStrokePaint2.setColor(Color.rgb(r, g, b));
         mStrokePaint2.setAlpha(a);
-        cvs.drawRect(x-65, y-5-Pos,  width+65,  height-3-Pos, mStrokePaint2);
+        cvs.drawRect(x - 65, y - 5 - Pos, width + 65, height - 3 - Pos, mStrokePaint2);
     }
 
     public void DrawOTH(Canvas cvs, int image_number, float X, float Y) {
-
         cvs.drawBitmap(OTHER[image_number], X, Y, p);
-
     }
 
     public void DebugText(String s) {
@@ -292,22 +302,22 @@ public class ESPView extends View implements Runnable {
     }
 
     public void DrawText(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mTextPaint.setARGB(a,r, g, b);
+        mTextPaint.setARGB(a, r, g, b);
         mTextPaint.setTextSize(size);
         cvs.drawText(txt, posX, posY, mTextPaint);
     }
 
     public void DrawTextDistance(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mTextPaint.setARGB(a,r, g, b);
+        mTextPaint.setARGB(a, r, g, b);
         mTextPaint.setColor(bgdistance);
-        cvs.drawRect(posX-44+Size,posY-18-Pos-Size,posX-79-Size,posY+6-Pos,mTextPaint);
+        cvs.drawRect(posX - 44 + Size, posY - 18 - Pos - Size, posX - 79 - Size, posY + 6 - Pos, mTextPaint);
         mTextPaint.setColor(textdistance);
-        mTextPaint.setTextSize(15+Size);
-        cvs.drawText(txt, posX-62, posY-Pos, mTextPaint);
+        mTextPaint.setTextSize(15 + Size);
+        cvs.drawText(txt, posX - 62, posY - Pos, mTextPaint);
     }
 
     public void DrawTextName(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mTextPaint.setARGB(a,r, g, b);
+        mTextPaint.setARGB(a, r, g, b);
         mTextPaint.setTextSize(size);
         if (SystemClock.uptimeMillis() - mFPSTime > 1000) {
             mFPSTime = SystemClock.uptimeMillis();
@@ -317,578 +327,579 @@ public class ESPView extends View implements Runnable {
             mFPSCounter++;
         }
         String s = "" + mFPS;
-        cvs.drawText("Fps :   "+s, posX-885, posY+940, mTextPaint);
+        cvs.drawText("Fps :   " + s, posX - 885, posY + 940, mTextPaint);
     }
 
     public void DrawTextAltert(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mTextPaint.setARGB(a,r, g, b);
+        mTextPaint.setARGB(a, r, g, b);
         mTextPaint.setTextSize(size);
         mTextPaint.setColor(ColorAlertText);
         cvs.drawText(txt, posX, posY, mTextPaint);
     }
 
-    public void DrawWeapon(Canvas cvs, int a, int r, int g, int b, int id,int ammo, float posX, float posY, float size) {
-        mTextPaint.setARGB(a,r, g, b);
-        String wname=getWeapon(id);
-        if(wname!=null)
+    public void DrawWeapon(Canvas cvs, int a, int r, int g, int b, int id, int ammo, float posX, float posY, float size) {
+        mTextPaint.setARGB(a, r, g, b);
+        String wname = getWeapon(id);
+        if (wname != null)
             mTextPaint2.setColor(bgEnWeapon);
-        cvs.drawRect(posX-100-Size,posY-10-Pos-Size,posX+100+Size,posY+18-Pos,mTextPaint2);
-        mTextPaint.setTextSize(15+Size);
+        cvs.drawRect(posX - 100 - Size, posY - 10 - Pos - Size, posX + 100 + Size, posY + 18 - Pos, mTextPaint2);
+        mTextPaint.setTextSize(15 + Size);
         mTextPaint.setColor(textenweapon);
-        cvs.drawText(wname+" > "+ammo, posX, posY+12-Pos, mTextPaint);
+        cvs.drawText(wname + " > " + ammo, posX, posY + 12 - Pos, mTextPaint);
     }
 
-    public void DrawName(Canvas cvs, int a, int r, int g, int b, String nametxt,int teamid, float posX, float posY, float size) {
+    public void DrawName(Canvas cvs, int a, int r, int g, int b, String nametxt, int teamid, float posX, float posY, float size) {
         String[] namesp = nametxt.split(":");
         char[] nameint = new char[namesp.length];
         for (int i = 0; i < namesp.length; i++)
             nameint[i] = (char) Integer.parseInt(namesp[i]);
         String realname = new String(nameint);
-        mTextPaint.setARGB(a,r, g, b);
+        mTextPaint.setARGB(a, r, g, b);
         mTextPaint2.setColor(bgname);
-        cvs.drawRect(posX - 100-Size, posY - 22 - Pos - Size, posX + 100+Size, posY + 10 - Pos, mTextPaint2);
+        cvs.drawRect(posX - 100 - Size, posY - 22 - Pos - Size, posX + 100 + Size, posY + 10 - Pos, mTextPaint2);
         mTextPaint.setColor(bgid);
-        cvs.drawRect(posX - 95-Size, posY - 18 - Pos-Size, posX - 70+Size, posY + 6 - Pos, mTextPaint);
-        mTextPaint.setTextSize(15+Size);
+        cvs.drawRect(posX - 95 - Size, posY - 18 - Pos - Size, posX - 70 + Size, posY + 6 - Pos, mTextPaint);
+        mTextPaint.setTextSize(15 + Size);
         mTextPaint.setColor(textname);
         cvs.drawText("" + realname, posX, posY - Pos, mTextPaint);
         cvs.drawText("" + teamid, posX - 84, posY - Pos, mTextPaint);
     }
-    public void DrawItems(Canvas cvs, String itemName,float distance, float posX, float posY, float size) {
+
+    public void DrawItems(Canvas cvs, String itemName, float distance, float posX, float posY, float size) {
         String realItemName = getItemName(itemName);
-        mTextPaint.setTextSize(15+itemSize);
+        mTextPaint.setTextSize(15 + itemSize);
         mTextPaint.setColor(Color.WHITE);
-        if(realItemName!=null && !realItemName.equals(""))
-            if (true && getConfig("Material")) {
-                if (realItemName == "AUG"){
+        if (realItemName != null && !realItemName.equals(""))
+            if (getConfig("Material")) {
+                if (realItemName == "AUG") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aug);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Groza") {
+                } else if (realItemName == "Groza") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.groza);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M762"){
+                } else if (realItemName == "M762") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m762);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SCAR-L"){
+                } else if (realItemName == "SCAR-L") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scar_l);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M416"){
+                } else if (realItemName == "M416") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m416);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M16A-4"){
+                } else if (realItemName == "M16A-4") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m16a4);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mk47 Mutant"){
+                } else if (realItemName == "Mk47 Mutant") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mk47);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "G36C"){
+                } else if (realItemName == "G36C") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.g36c);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "QBZ"){
+                } else if (realItemName == "QBZ") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.qbz);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AKM"){
+                } else if (realItemName == "AKM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.akm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "TommyGun"){
+                } else if (realItemName == "TommyGun") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tommy);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vector"){
+                } else if (realItemName == "Vector") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vector);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DP28"){
+                } else if (realItemName == "DP28") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dp);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AWM"){
+                } else if (realItemName == "AWM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.awm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "QBU"){
+                } else if (realItemName == "QBU") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.qbu);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SLR"){
+                } else if (realItemName == "SLR") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.slr);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SKS"){
+                } else if (realItemName == "SKS") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sks);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mini14"){
+                } else if (realItemName == "Mini14") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mini14);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M24"){
+                } else if (realItemName == "M24") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m24);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Kar98k"){
+                } else if (realItemName == "Kar98k") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.kar98k);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mk14"){
+                } else if (realItemName == "Mk14") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mk14);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "S12K"){
+                } else if (realItemName == "S12K") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s12k);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DBS"){
+                } else if (realItemName == "DBS") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dbs);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "S1897"){
+                } else if (realItemName == "S1897") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s1897);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Pan"){
+                } else if (realItemName == "Pan") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pan);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Painkiller"){
+                } else if (realItemName == "Painkiller") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pain_killer);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Adrenaline"){
+                } else if (realItemName == "Adrenaline") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.injection);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Energy Drink"){
+                } else if (realItemName == "Energy Drink") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.energy_drink);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "FirstAidKit"){
+                } else if (realItemName == "FirstAidKit") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.first_aid);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bandage"){
+                } else if (realItemName == "Bandage") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bandage);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Molotov"){
+                } else if (realItemName == "Molotov") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Flare Gun"){
+                } else if (realItemName == "Flare Gun") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.flare_gun);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AirDrop"){
+                } else if (realItemName == "AirDrop") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.air_drop);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DropPlane"){
+                } else if (realItemName == "DropPlane") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.plane);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "GasCan"){
+                } else if (realItemName == "GasCan") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gas_can);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "8x"){
+                } else if (realItemName == "8x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s8x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "2x"){
+                } else if (realItemName == "2x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s2x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Red Dot"){
+                } else if (realItemName == "Red Dot") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.reddot);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "3X"){
+                } else if (realItemName == "3X") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s3x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Hollow Sight"){
+                } else if (realItemName == "Hollow Sight") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.hollow);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "6x"){
+                } else if (realItemName == "6x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s6x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "4x"){
+                } else if (realItemName == "4x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s4x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Canted Sight"){
+                } else if (realItemName == "Canted Sight") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.canted);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "45ACP"){
+                } else if (realItemName == "45ACP") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammocp);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "9mm"){
+                } else if (realItemName == "9mm") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo9mm);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "12 Guage"){
+                } else if (realItemName == "12 Guage") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo12uage);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "7.62"){
+                } else if (realItemName == "7.62") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo762);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "5.56"){
+                } else if (realItemName == "5.56") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo556);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Arrow"){
+                } else if (realItemName == "Arrow") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aarrow);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "300Magnum"){
+                } else if (realItemName == "300Magnum") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo300magnum);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 3"){
+                } else if (realItemName == "Bag lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 2"){
+                } else if (realItemName == "Bag lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 1"){
+                } else if (realItemName == "Bag lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 3"){
+                } else if (realItemName == "Vest lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 2"){
+                } else if (realItemName == "Vest lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 1"){
+                } else if (realItemName == "Vest lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 3"){
+                } else if (realItemName == "Helmet lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 2"){
+                } else if (realItemName == "Helmet lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 1"){
+                } else if (realItemName == "Helmet lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
                 }
@@ -900,536 +911,536 @@ public class ESPView extends View implements Runnable {
                 //        posY - 70, // Top
                 //        null // Paint
                 //);
-            }else if (true && getConfig("Dual")){
-                if (realItemName == "AUG"){
+            } else if (getConfig("Dual")) {
+                if (realItemName == "AUG") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aug);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Groza") {
+                } else if (realItemName == "Groza") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.groza);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M762"){
+                } else if (realItemName == "M762") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m762);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SCAR-L"){
+                } else if (realItemName == "SCAR-L") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scar_l);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M416"){
+                } else if (realItemName == "M416") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m416);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M16A-4"){
+                } else if (realItemName == "M16A-4") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m16a4);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mk47 Mutant"){
+                } else if (realItemName == "Mk47 Mutant") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mk47);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "G36C"){
+                } else if (realItemName == "G36C") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.g36c);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "QBZ"){
+                } else if (realItemName == "QBZ") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.qbz);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AKM"){
+                } else if (realItemName == "AKM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.akm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "TommyGun"){
+                } else if (realItemName == "TommyGun") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tommy);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vector"){
+                } else if (realItemName == "Vector") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vector);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DP28"){
+                } else if (realItemName == "DP28") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dp);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AWM"){
+                } else if (realItemName == "AWM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.awm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "QBU"){
+                } else if (realItemName == "QBU") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.qbu);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SLR"){
+                } else if (realItemName == "SLR") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.slr);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SKS"){
+                } else if (realItemName == "SKS") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sks);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mini14"){
+                } else if (realItemName == "Mini14") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mini14);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M24"){
+                } else if (realItemName == "M24") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m24);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Kar98k"){
+                } else if (realItemName == "Kar98k") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.kar98k);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mk14"){
+                } else if (realItemName == "Mk14") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mk14);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "S12K"){
+                } else if (realItemName == "S12K") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s12k);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DBS"){
+                } else if (realItemName == "DBS") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dbs);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "S1897"){
+                } else if (realItemName == "S1897") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s1897);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Pan"){
+                } else if (realItemName == "Pan") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pan);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Painkiller"){
+                } else if (realItemName == "Painkiller") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pain_killer);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Adrenaline"){
+                } else if (realItemName == "Adrenaline") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.injection);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Energy Drink"){
+                } else if (realItemName == "Energy Drink") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.energy_drink);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "FirstAidKit"){
+                } else if (realItemName == "FirstAidKit") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.first_aid);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bandage"){
+                } else if (realItemName == "Bandage") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bandage);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Molotov"){
+                } else if (realItemName == "Molotov") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Flare Gun"){
+                } else if (realItemName == "Flare Gun") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.flare_gun);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AirDrop"){
+                } else if (realItemName == "AirDrop") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.air_drop);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DropPlane"){
+                } else if (realItemName == "DropPlane") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.plane);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "GasCan"){
+                } else if (realItemName == "GasCan") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gas_can);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "8x"){
+                } else if (realItemName == "8x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s8x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "2x"){
+                } else if (realItemName == "2x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s2x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Red Dot"){
+                } else if (realItemName == "Red Dot") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.reddot);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "3X"){
+                } else if (realItemName == "3X") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s3x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Hollow Sight"){
+                } else if (realItemName == "Hollow Sight") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.hollow);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "6x"){
+                } else if (realItemName == "6x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s6x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "4x"){
+                } else if (realItemName == "4x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s4x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Canted Sight"){
+                } else if (realItemName == "Canted Sight") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.canted);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "45ACP"){
+                } else if (realItemName == "45ACP") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammocp);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "9mm"){
+                } else if (realItemName == "9mm") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo9mm);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "12 Guage"){
+                } else if (realItemName == "12 Guage") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo12uage);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "7.62"){
+                } else if (realItemName == "7.62") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo762);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "5.56"){
+                } else if (realItemName == "5.56") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo556);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Arrow"){
+                } else if (realItemName == "Arrow") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aarrow);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "300Magnum"){
+                } else if (realItemName == "300Magnum") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo300magnum);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 3"){
+                } else if (realItemName == "Bag lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 2"){
+                } else if (realItemName == "Bag lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 1"){
+                } else if (realItemName == "Bag lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 3"){
+                } else if (realItemName == "Vest lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 2"){
+                } else if (realItemName == "Vest lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 1"){
+                } else if (realItemName == "Vest lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 3"){
+                } else if (realItemName == "Helmet lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 2"){
+                } else if (realItemName == "Helmet lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 1"){
+                } else if (realItemName == "Helmet lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
                 }
@@ -1442,536 +1453,536 @@ public class ESPView extends View implements Runnable {
                 //        null // Paint
                 //);
                 cvs.drawText(realItemName + " (" + Math.round(distance) + "m)", posX, posY - itemPosition, mTextPaint);
-            }else if (true && getConfig("MaterialDistance")){
-                if (realItemName == "AUG"){
+            } else if (getConfig("MaterialDistance")) {
+                if (realItemName == "AUG") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aug);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Groza") {
+                } else if (realItemName == "Groza") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.groza);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M762"){
+                } else if (realItemName == "M762") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m762);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SCAR-L"){
+                } else if (realItemName == "SCAR-L") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scar_l);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M416"){
+                } else if (realItemName == "M416") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m416);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M16A-4"){
+                } else if (realItemName == "M16A-4") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m16a4);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mk47 Mutant"){
+                } else if (realItemName == "Mk47 Mutant") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mk47);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "G36C"){
+                } else if (realItemName == "G36C") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.g36c);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "QBZ"){
+                } else if (realItemName == "QBZ") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.qbz);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AKM"){
+                } else if (realItemName == "AKM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.akm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "TommyGun"){
+                } else if (realItemName == "TommyGun") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tommy);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vector"){
+                } else if (realItemName == "Vector") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vector);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DP28"){
+                } else if (realItemName == "DP28") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dp);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AWM"){
+                } else if (realItemName == "AWM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.awm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "QBU"){
+                } else if (realItemName == "QBU") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.qbu);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SLR"){
+                } else if (realItemName == "SLR") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.slr);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "SKS"){
+                } else if (realItemName == "SKS") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sks);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mini14"){
+                } else if (realItemName == "Mini14") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mini14);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "M24"){
+                } else if (realItemName == "M24") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m24);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Kar98k"){
+                } else if (realItemName == "Kar98k") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.kar98k);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Mk14"){
+                } else if (realItemName == "Mk14") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mk14);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "S12K"){
+                } else if (realItemName == "S12K") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s12k);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DBS"){
+                } else if (realItemName == "DBS") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dbs);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "S1897"){
+                } else if (realItemName == "S1897") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s1897);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Pan"){
+                } else if (realItemName == "Pan") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pan);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Painkiller"){
+                } else if (realItemName == "Painkiller") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pain_killer);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Adrenaline"){
+                } else if (realItemName == "Adrenaline") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.injection);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Energy Drink"){
+                } else if (realItemName == "Energy Drink") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.energy_drink);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "FirstAidKit"){
+                } else if (realItemName == "FirstAidKit") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.first_aid);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bandage"){
+                } else if (realItemName == "Bandage") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bandage);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Molotov"){
+                } else if (realItemName == "Molotov") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Flare Gun"){
+                } else if (realItemName == "Flare Gun") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.flare_gun);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "AirDrop"){
+                } else if (realItemName == "AirDrop") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.air_drop);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "DropPlane"){
+                } else if (realItemName == "DropPlane") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.plane);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "GasCan"){
+                } else if (realItemName == "GasCan") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gas_can);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 50, // Left
-                            posY - 70 -  itemPosition, // Top
+                            posY - 70 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "8x"){
+                } else if (realItemName == "8x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s8x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "2x"){
+                } else if (realItemName == "2x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s2x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Red Dot"){
+                } else if (realItemName == "Red Dot") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.reddot);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "3X"){
+                } else if (realItemName == "3X") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s3x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Hollow Sight"){
+                } else if (realItemName == "Hollow Sight") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.hollow);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "6x"){
+                } else if (realItemName == "6x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s6x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "4x"){
+                } else if (realItemName == "4x") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s4x);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Canted Sight"){
+                } else if (realItemName == "Canted Sight") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.canted);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "45ACP"){
+                } else if (realItemName == "45ACP") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammocp);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "9mm"){
+                } else if (realItemName == "9mm") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo9mm);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "12 Guage"){
+                } else if (realItemName == "12 Guage") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo12uage);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "7.62"){
+                } else if (realItemName == "7.62") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo762);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "5.56"){
+                } else if (realItemName == "5.56") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo556);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Arrow"){
+                } else if (realItemName == "Arrow") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aarrow);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "300Magnum"){
+                } else if (realItemName == "300Magnum") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo300magnum);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 30, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 3"){
+                } else if (realItemName == "Bag lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 2"){
+                } else if (realItemName == "Bag lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Bag lvl 1"){
+                } else if (realItemName == "Bag lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 3"){
+                } else if (realItemName == "Vest lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 2"){
+                } else if (realItemName == "Vest lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Vest lvl 1"){
+                } else if (realItemName == "Vest lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 3"){
+                } else if (realItemName == "Helmet lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet3);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 2"){
+                } else if (realItemName == "Helmet lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet2);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realItemName == "Helmet lvl 1"){
+                } else if (realItemName == "Helmet lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet1);
                     out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
-                            posY - 85 -  itemPosition, // Top
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
                 }
@@ -1984,141 +1995,142 @@ public class ESPView extends View implements Runnable {
                 //        null // Paint
                 //);
                 cvs.drawText("(" + Math.round(distance) + "m)", posX, posY - itemPosition, mTextPaint);
-            }else{
+            } else {
                 cvs.drawText(realItemName + " (" + Math.round(distance) + "m)", posX, posY - itemPosition, mTextPaint);
             }
     }
-    public void DrawVehicles(Canvas cvs, String itemName,float distance, float posX, float posY, float size) {
+
+    public void DrawVehicles(Canvas cvs, String itemName, float distance, float posX, float posY, float size) {
         String realVehicleName = getVehicleName(itemName);
         mTextPaint.setColor(Color.WHITE);
         //mTextPaint.setAlpha(150);
-        mTextPaint.setTextSize(15+itemSize);
-        if(realVehicleName!=null && !realVehicleName.equals(""))
-            if (true && getConfig("Material")) {
-                if (realVehicleName == "Buggy"){
+        mTextPaint.setTextSize(15 + itemSize);
+        if (realVehicleName != null && !realVehicleName.equals(""))
+            if (getConfig("Material")) {
+                if (realVehicleName == "Buggy") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.buggy);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "UAZ"){
+                } else if (realVehicleName == "UAZ") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.uaz);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Bike"){
+                } else if (realVehicleName == "Bike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Dacia"){
+                } else if (realVehicleName == "Dacia") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dacia);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Jet"){
+                } else if (realVehicleName == "Jet") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aquarail);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Boat"){
+                } else if (realVehicleName == "Boat") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.big_boat);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "MiniBus"){
+                } else if (realVehicleName == "MiniBus") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mini_bus);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Mirado"){
+                } else if (realVehicleName == "Mirado") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mirado);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Snowbike"){
+                } else if (realVehicleName == "Snowbike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snowbike);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Snowmobile"){
+                } else if (realVehicleName == "Snowmobile") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snow_mobile);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Tuk"){
+                } else if (realVehicleName == "Tuk") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tuktuk);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Pickup"){
+                } else if (realVehicleName == "Pickup") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pickup);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "BRDM"){
+                } else if (realVehicleName == "BRDM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.brdm);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "LadaNiva"){
+                } else if (realVehicleName == "LadaNiva") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.lada_niva);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
                 }
@@ -2130,131 +2142,131 @@ public class ESPView extends View implements Runnable {
                 //        posY - 80, // Top
                 //        null // Paint
                 //);
-            }else if (true && getConfig("Dual")){
-                if (realVehicleName == "Buggy"){
+            } else if (getConfig("Dual")) {
+                if (realVehicleName == "Buggy") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.buggy);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "UAZ"){
+                } else if (realVehicleName == "UAZ") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.uaz);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Bike"){
+                } else if (realVehicleName == "Bike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Dacia"){
+                } else if (realVehicleName == "Dacia") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dacia);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Jet"){
+                } else if (realVehicleName == "Jet") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aquarail);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Boat"){
+                } else if (realVehicleName == "Boat") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.big_boat);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "MiniBus"){
+                } else if (realVehicleName == "MiniBus") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mini_bus);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Mirado"){
+                } else if (realVehicleName == "Mirado") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mirado);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Snowbike"){
+                } else if (realVehicleName == "Snowbike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snowbike);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Snowmobile"){
+                } else if (realVehicleName == "Snowmobile") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snow_mobile);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Tuk"){
+                } else if (realVehicleName == "Tuk") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tuktuk);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Pickup"){
+                } else if (realVehicleName == "Pickup") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pickup);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "BRDM"){
+                } else if (realVehicleName == "BRDM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.brdm);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "LadaNiva"){
+                } else if (realVehicleName == "LadaNiva") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.lada_niva);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
                 }
@@ -2267,131 +2279,131 @@ public class ESPView extends View implements Runnable {
                 //        null // Paint
                 //);
                 cvs.drawText(realVehicleName + " (" + Math.round(distance) + "m)", posX, posY - itemPosition, mTextPaint);
-            }else if (true && getConfig("MaterialDistance")){
-                if (realVehicleName == "Buggy"){
+            } else if (getConfig("MaterialDistance")) {
+                if (realVehicleName == "Buggy") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.buggy);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "UAZ"){
+                } else if (realVehicleName == "UAZ") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.uaz);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Bike"){
+                } else if (realVehicleName == "Bike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Dacia"){
+                } else if (realVehicleName == "Dacia") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dacia);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Jet"){
+                } else if (realVehicleName == "Jet") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aquarail);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Boat"){
+                } else if (realVehicleName == "Boat") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.big_boat);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "MiniBus"){
+                } else if (realVehicleName == "MiniBus") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mini_bus);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Mirado"){
+                } else if (realVehicleName == "Mirado") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mirado);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Snowbike"){
+                } else if (realVehicleName == "Snowbike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snowbike);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Snowmobile"){
+                } else if (realVehicleName == "Snowmobile") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snow_mobile);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Tuk"){
+                } else if (realVehicleName == "Tuk") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tuktuk);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "Pickup"){
+                } else if (realVehicleName == "Pickup") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pickup);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "BRDM"){
+                } else if (realVehicleName == "BRDM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.brdm);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
-                }else if (realVehicleName == "LadaNiva"){
+                } else if (realVehicleName == "LadaNiva") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.lada_niva);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 20, // Left
-                            posY - 80 -  itemPosition, // Top
+                            posY - 80 - itemPosition, // Top
                             null // Paint
                     );
                 }
@@ -2404,11 +2416,12 @@ public class ESPView extends View implements Runnable {
                 //        null // Paint
                 //);
                 cvs.drawText("(" + Math.round(distance) + "m)", posX, posY - itemPosition, mTextPaint);
-            }else{
+            } else {
                 cvs.drawText(realVehicleName + " (" + Math.round(distance) + "m)", posX, posY - itemPosition, mTextPaint);
             }
         //cvs.drawText(realVehicleName+": "+Math.round(distance)+"m", posX, posY, mTextPaint);
     }
+
     public void DrawCircle(Canvas cvs, int a, int r, int g, int b, float stroke, float posX, float posY, float radius) {
         mStrokePaint.setColor(Color.rgb(r, g, b));
         mStrokePaint.setAlpha(a);
@@ -2419,13 +2432,13 @@ public class ESPView extends View implements Runnable {
     public void DrawFilledCircle(Canvas cvs, int a, int r, int g, int b, float posX, float posY, float radius) {
         mFilledPaint.setColor(Color.rgb(r, g, b));
         mFilledPaint.setAlpha(a);
-        if (true && getConfig("SQUARE")){
+        if (getConfig("SQUARE")) {
             mFilledPaint.setColor(ColorAlert);
-            cvs.drawRect(posX-75,posY-32,posX+75,posY+16,mFilledPaint);
-        }else if (getConfig("SQUARE")){
+            cvs.drawRect(posX - 75, posY - 32, posX + 75, posY + 16, mFilledPaint);
+        } else if (getConfig("SQUARE")) {
             mFilledPaint.setColor(ColorAlert);
-            cvs.drawRect(posX-75,posY-32,posX+75,posY+16,mFilledPaint);
-        }else{
+            cvs.drawRect(posX - 75, posY - 32, posX + 75, posY + 16, mFilledPaint);
+        } else {
             mFilledPaint.setColor(ColorAlert);
             cvs.drawCircle(posX, posY, radius, mFilledPaint);
         }
@@ -2440,7 +2453,7 @@ public class ESPView extends View implements Runnable {
 
     private String getItemName(String s) {
         //Scopes
-        if (s.contains("MZJ_8X")&& getConfig("8x")) { //mTextPaint.setARGB(255, 247, 99, 245);
+        if (s.contains("MZJ_8X") && getConfig("8x")) { //mTextPaint.setARGB(255, 247, 99, 245);
             return "8x";
         }
 
@@ -2473,7 +2486,7 @@ public class ESPView extends View implements Runnable {
         }
 
 
-        //AR and smg
+        //AR and SMG
         if (s.contains("AUG") && getConfig("AUG")) { //mTextPaint.setARGB(255, 52, 224, 63);
             return "AUG";
         }
@@ -2546,9 +2559,10 @@ public class ESPView extends View implements Runnable {
             return "M249";
         }
 
-        //snipers
 
-        if (s.contains("AWM") && getConfig("AWM")) { mTextPaint.setColor(Color.BLACK);
+        //Snipers
+        if (s.contains("AWM") && getConfig("AWM")) {
+            mTextPaint.setColor(Color.BLACK);
             return "AWM";
         }
 
@@ -2584,11 +2598,13 @@ public class ESPView extends View implements Runnable {
             return "Win94";
         }
 
-        if (s.contains("Mk14") && getConfig("Mk14")) { mTextPaint.setColor(Color.BLACK);
+        if (s.contains("Mk14") && getConfig("Mk14")) {
+            mTextPaint.setColor(Color.BLACK);
             return "Mk14";
         }
 
-//shotguns and hand weapons
+
+        //Shotguns and Hand weapons
         if (s.contains("S12K") && getConfig("S12K")) { //mTextPaint.setARGB(255, 153, 109, 109);
             return "S12K";
         }
@@ -2625,8 +2641,8 @@ public class ESPView extends View implements Runnable {
             return "Pan";
         }
 
-        //pistols
 
+        //Pistols
         if (s.contains("SawedOff") && getConfig("SawedOff")) { //mTextPaint.setARGB(255, 156, 113, 81);
             return "SawedOff";
         }
@@ -2665,19 +2681,23 @@ public class ESPView extends View implements Runnable {
             return "7.62";
         }
 
-        if (s.contains("Ammo_45AC") && getConfig("45ACP")) { mTextPaint.setColor(Color.LTGRAY);
+        if (s.contains("Ammo_45AC") && getConfig("45ACP")) {
+            mTextPaint.setColor(Color.LTGRAY);
             return "45ACP";
         }
 
-        if (s.contains("Ammo_556mm") && getConfig("5.56")) { mTextPaint.setColor(Color.GREEN);
+        if (s.contains("Ammo_556mm") && getConfig("5.56")) {
+            mTextPaint.setColor(Color.GREEN);
             return "5.56";
         }
 
-        if (s.contains("Ammo_9mm") && getConfig("9mm")) { mTextPaint.setColor(Color.YELLOW);
+        if (s.contains("Ammo_9mm") && getConfig("9mm")) {
+            mTextPaint.setColor(Color.YELLOW);
             return "9mm";
         }
 
-        if (s.contains("Ammo_300Magnum") && getConfig("300Magnum")) { mTextPaint.setColor(Color.BLACK);
+        if (s.contains("Ammo_300Magnum") && getConfig("300Magnum")) {
+            mTextPaint.setColor(Color.BLACK);
             return "300Magnum";
         }
 
@@ -2689,12 +2709,13 @@ public class ESPView extends View implements Runnable {
             return "Arrow";
         }
 
-        //bag helmet vest
+
+        //Bag, Helmet, Vest
         if (s.contains("Bag_Lv3") && getConfig("Bag L 3")) { //mTextPaint.setARGB(255, 36, 83, 255);
             return "Bag lvl 3";
         }
 
-        if (s.contains("Bag_Lv1")  && getConfig("Bag L 1")) { //mTextPaint.setARGB(255, 127, 154, 250);
+        if (s.contains("Bag_Lv1") && getConfig("Bag L 1")) { //mTextPaint.setARGB(255, 127, 154, 250);
             return "Bag lvl 1";
         }
 
@@ -2706,16 +2727,13 @@ public class ESPView extends View implements Runnable {
             return "Vest lvl 2";
         }
 
-
         if (s.contains("Armor_Lv1") && getConfig("Vest L 1")) { //mTextPaint.setARGB(255, 127, 154, 250);
             return "Vest lvl 1";
         }
 
-
         if (s.contains("Armor_Lv3") && getConfig("Vest L 3")) { //mTextPaint.setARGB(255, 36, 83, 255);
             return "Vest lvl 3";
         }
-
 
         if (s.contains("Helmet_Lv2") && getConfig("Helmet 2")) { //mTextPaint.setARGB(255, 77, 115, 255);
             return "Helmet lvl 2";
@@ -2729,7 +2747,8 @@ public class ESPView extends View implements Runnable {
             return "Helmet lvl 3";
         }
 
-        //Healthkits
+
+        //Health kits
         if (s.contains("Pills") && getConfig("PainKiller")) { //mTextPaint.setARGB(255, 227, 91, 54);
             return "Painkiller";
         }
@@ -2754,6 +2773,7 @@ public class ESPView extends View implements Runnable {
             return "Medkit";
         }
 
+
         //Throwables
         if (s.contains("Grenade_Stun") && getConfig("Stung")) { //mTextPaint.setARGB(255,204, 193, 190);
             return "Stung";
@@ -2763,7 +2783,8 @@ public class ESPView extends View implements Runnable {
             return "Grenade";
         }
 
-        if (s.contains("Grenade_Smoke") && getConfig("Smoke")) { mTextPaint.setColor(Color.WHITE);
+        if (s.contains("Grenade_Smoke") && getConfig("Smoke")) {
+            mTextPaint.setColor(Color.WHITE);
             return "Smoke";
         }
 
@@ -2772,7 +2793,7 @@ public class ESPView extends View implements Runnable {
         }
 
 
-        //others
+        //Others
         if (s.contains("Large_FlashHider") && getConfig("Flash Hider Ar")) { //mTextPaint.setARGB(255, 255, 213, 130);
             return "Flash Hider Ar";
         }
@@ -2805,7 +2826,6 @@ public class ESPView extends View implements Runnable {
             return "Half Grip";
         }
 
-
         if (s.contains("Choke") && getConfig("Choke")) { //mTextPaint.setARGB(255, 155, 189, 222);
             return "Choke";
         }
@@ -2825,7 +2845,6 @@ public class ESPView extends View implements Runnable {
         if (s.contains("Large_Suppressor") && getConfig("Suppressor Ar")) { //mTextPaint.setARGB(255, 60, 127, 194);
             return "Suppressor Ar";
         }
-
 
         if (s.contains("Sniper_EQ_") && getConfig("Ex.Qd.Sniper")) { //mTextPaint.setARGB(255, 193, 140, 222);
             return "Ex.Qd.Sniper";
@@ -2871,7 +2890,6 @@ public class ESPView extends View implements Runnable {
             return "Bullet Loop";
         }
 
-
         if (s.contains("ThumbGrip") && getConfig("Thumb Grip")) { //mTextPaint.setARGB(255, 148, 121, 163);
             return "Thumb Grip";
         }
@@ -2901,7 +2919,7 @@ public class ESPView extends View implements Runnable {
         }
 
 
-        //special
+        //Special
         if (s.contains("Flare") && getConfig("Flare Gun")) { //mTextPaint.setARGB(255, 242, 63, 159);
             return "Flare Gun";
         }
@@ -2912,216 +2930,215 @@ public class ESPView extends View implements Runnable {
         if (s.contains("CheekPad") && getConfig("CheekPad")) { //mTextPaint.setARGB(255, 112, 55, 55);
             return "CheekPad";
         }
-        if ( s.contains("PickUpListWrapperActor") && getConfig("Crate")) { //mTextPaint.setARGB(255, 132, 201, 66);
+        if (s.contains("PickUpListWrapperActor") && getConfig("Crate")) { //mTextPaint.setARGB(255, 132, 201, 66);
             return "Crate";
         }
-        if ((s.contains("AirDropPlane") )&& getConfig("DropPlane")) { //mTextPaint.setARGB(255, 224, 177, 224);
+        if ((s.contains("AirDropPlane")) && getConfig("DropPlane")) { //mTextPaint.setARGB(255, 224, 177, 224);
             return "DropPlane";
         }
-        if ((s.contains("AirDrop")  )&& getConfig("AirDrop")) { //mTextPaint.setARGB(255, 255, 10, 255);
+        if ((s.contains("AirDrop")) && getConfig("AirDrop")) { //mTextPaint.setARGB(255, 255, 10, 255);
             return "AirDrop";
         }
         //return s;
         return null;
-
     }
-    private String getWeapon(int id){
-        if(id==101006)
+
+    private String getWeapon(int id) {
+        //AR and SMG
+        if (id == 101006)
             return "AUG";
 
-        if(id==101008)
-            return "M762" ;
+        if (id == 101008)
+            return "M762";
 
-        if(id==101003)
+        if (id == 101003)
             return "SCAR-L";
 
-        if(id==101004)
+        if (id == 101004)
             return "M416";
 
-        if(id==101002)
+        if (id == 101002)
             return "M16A-4";
 
-        if(id==101009)
+        if (id == 101009)
             return "Mk47 Mutant";
 
-        if(id==101010)
+        if (id == 101010)
             return "G36C";
 
-        if(id==101007)
+        if (id == 101007)
             return "QBZ";
 
-        if(id==101001)
+        if (id == 101001)
             return "AKM";
 
-        if(id==101005)
+        if (id == 101005)
             return "Groza";
 
-        if(id==102005)
+        if (id == 102005)
             return "Bizon";
 
-        if(id==102004)
+        if (id == 102004)
             return "TommyGun";
 
-        if(id==102007)
+        if (id == 102007)
             return "MP5K";
 
-        if(id==102002)
+        if (id == 102002)
             return "UMP";
 
-        if(id==102003)
+        if (id == 102003)
             return "Vector";
 
-        if(id==102001)
+        if (id == 102001)
             return "Uzi";
 
-        if(id==105002)
+        if (id == 105002)
             return "DP28";
 
-        if(id==105001)
+        if (id == 105001)
             return "M249";
 
-        //snipers
-
-        if(id==103003)
+        //Snipers
+        if (id == 103003)
             return "AWM";
 
-        if(id==103010)
+        if (id == 103010)
             return "QBU";
 
-        if(id==103009)
+        if (id == 103009)
             return "SLR";
 
-        if(id==103004)
+        if (id == 103004)
             return "SKS";
 
-        if(id==103006)
+        if (id == 103006)
             return "Mini14";
 
-        if(id==103002)
+        if (id == 103002)
             return "M24";
 
-        if(id==103001)
+        if (id == 103001)
             return "Kar98k";
 
-        if(id==103005)
+        if (id == 103005)
             return "VSS";
 
-        if(id==103008)
+        if (id == 103008)
             return "Win94";
 
-        if(id==103007)
+        if (id == 103007)
             return "Mk14";
 
-//shotguns and hand weapons
-        if(id==104003)
+        //Shotguns and Hand weapons
+        if (id == 104003)
             return "S12K";
 
-        if(id==104004)
+        if (id == 104004)
             return "DBS";
 
-        if(id==104001)
+        if (id == 104001)
             return "S686";
 
-        if(id==104002)
+        if (id == 104002)
             return "S1897";
 
-        if(id==108003)
+        if (id == 108003)
             return "Sickle";
 
-        if(id==108001)
+        if (id == 108001)
             return "Machete";
 
-        if(id==108002)
+        if (id == 108002)
             return "Crowbar";
 
-        if(id==107001)
+        if (id == 107001)
             return "CrossBow";
 
-        if(id==108004)
+        if (id == 108004)
             return "Pan";
 
-        //pistols
-
-        if(id==106006)
+        //Pistols
+        if (id == 106006)
             return "SawedOff";
 
-        if(id==106003)
+        if (id == 106003)
             return "R1895";
 
-        if(id==106008)
+        if (id == 106008)
             return "Vz61";
 
-        if(id==106001)
+        if (id == 106001)
             return "P92";
 
-        if(id==106004)
+        if (id == 106004)
             return "P18C";
 
-        if(id==106005)
+        if (id == 106005)
             return "R45";
 
-        if(id==106002)
+        if (id == 106002)
             return "P1911";
 
-        if(id==106010)
+        if (id == 106010)
             return "DesertEagle";
 
         return null;
-
     }
-    private String getVehicleName(String s){
-        if(s.contains("Buggy") && getConfig("Buggy"))
+
+    private String getVehicleName(String s) {
+        if (s.contains("Buggy") && getConfig("Buggy"))
             return "Buggy";
 
-        if(s.contains("UAZ") && getConfig("UAZ"))
+        if (s.contains("UAZ") && getConfig("UAZ"))
             return "UAZ";
 
-        if(s.contains("MotorcycleC") && getConfig("Trike") )
+        if (s.contains("MotorcycleC") && getConfig("Trike"))
             return "Trike";
 
-        if(s.contains("Motorcycle") && getConfig("Bike"))
+        if (s.contains("Motorcycle") && getConfig("Bike"))
             return "Bike";
 
-        if(s.contains("Dacia") && getConfig("Dacia"))
+        if (s.contains("Dacia") && getConfig("Dacia"))
             return "Dacia";
 
-        if(s.contains("AquaRail") && getConfig("Jet"))
+        if (s.contains("AquaRail") && getConfig("Jet"))
             return "Jet";
 
-        if(s.contains("PG117") && getConfig("Boat"))
+        if (s.contains("PG117") && getConfig("Boat"))
             return "Boat";
 
-        if(s.contains("MiniBus") && getConfig("Bus"))
+        if (s.contains("MiniBus") && getConfig("Bus"))
             return "Bus";
 
-        if(s.contains("Mirado") && getConfig("Mirado"))
+        if (s.contains("Mirado") && getConfig("Mirado"))
             return "Mirado";
 
-        if(s.contains("Scooter") && getConfig("Scooter"))
+        if (s.contains("Scooter") && getConfig("Scooter"))
             return "Scooter";
 
-        if(s.contains("Rony") && getConfig("Rony"))
+        if (s.contains("Rony") && getConfig("Rony"))
             return "Rony";
 
-        if(s.contains("Snowbike") && getConfig("Snowbike"))
+        if (s.contains("Snowbike") && getConfig("Snowbike"))
             return "Snowbike";
 
-        if(s.contains("Snowmobile") && getConfig("Snowmobile"))
+        if (s.contains("Snowmobile") && getConfig("Snowmobile"))
             return "Snowmobile";
 
-        if(s.contains("Tuk") && getConfig("Tempo"))
+        if (s.contains("Tuk") && getConfig("Tempo"))
             return "Tempo";
 
-        if(s.contains("PickUp") && getConfig("Truck"))
+        if (s.contains("PickUp") && getConfig("Truck"))
             return "Truck";
 
-        if(s.contains("BRDM") && getConfig("BRDM"))
+        if (s.contains("BRDM") && getConfig("BRDM"))
             return "BRDM";
 
-        if(s.contains("LadaNiva") && getConfig("LadaNiva"))
+        if (s.contains("LadaNiva") && getConfig("LadaNiva"))
             return "LadaNiva";
 
-        if(s.contains("Bigfoot") && getConfig("Monster Truck"))
+        if (s.contains("Bigfoot") && getConfig("Monster Truck"))
             return "Monster Truck";
 
         return "";
@@ -3131,22 +3148,22 @@ public class ESPView extends View implements Runnable {
         // Determine the constrained dimension, which determines both dimensions.
         int width;
         int height;
-        float widthRatio = (float)bitmap.getWidth() / maxWidth;
-        float heightRatio = (float)bitmap.getHeight() / maxHeight;
+        float widthRatio = (float) bitmap.getWidth() / maxWidth;
+        float heightRatio = (float) bitmap.getHeight() / maxHeight;
         // Width constrained.
         if (widthRatio >= heightRatio) {
             width = maxWidth;
-            height = (int)(((float)width / bitmap.getWidth()) * bitmap.getHeight());
+            height = (int) (((float) width / bitmap.getWidth()) * bitmap.getHeight());
         }
         // Height constrained.
         else {
             height = maxHeight;
-            width = (int)(((float)height / bitmap.getHeight()) * bitmap.getWidth());
+            width = (int) (((float) height / bitmap.getHeight()) * bitmap.getWidth());
         }
         Bitmap scaledBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
-        float ratioX = (float)width / bitmap.getWidth();
-        float ratioY = (float)height / bitmap.getHeight();
+        float ratioX = (float) width / bitmap.getWidth();
+        float ratioY = (float) height / bitmap.getHeight();
         float middleX = width / 2.0f;
         float middleY = height / 2.0f;
         Matrix scaleMatrix = new Matrix();

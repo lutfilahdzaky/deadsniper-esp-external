@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Build;
-import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -21,11 +20,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.cardview.widget.CardView;
@@ -34,8 +31,6 @@ import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorChangedListener;
 
 import static java.lang.System.exit;
-
-;
 
 public class FloatLogo extends Service implements View.OnClickListener {
 
@@ -48,39 +43,37 @@ public class FloatLogo extends Service implements View.OnClickListener {
 
     public FloatLogo() {
     }
+
     static {
         System.loadLibrary("native-lib");
     }
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
-    View espView,logoView;
-    {
-        System.loadLibrary("native-lib");
-    }
+    View espView, logoView;
+
     @SuppressLint("CutPasteId")
     @Override
     public void onCreate() {
         super.onCreate();
-        Instance=this;
+        Instance = this;
         createOver();
 
         logoView = mFloatingView.findViewById(R.id.relativeLayoutParent);
         espView = mFloatingView.findViewById(R.id.expanded_container);
         Init();
-
     }
 
     @SuppressLint("InflateParams")
-    void createOver(){
+    void createOver() {
         //getting the widget layout from xml using layout inflater
         mFloatingView = LayoutInflater.from(this).inflate(R.layout.float_logo, null);
         int LAYOUT_FLAG;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LAYOUT_FLAG = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-
         } else {
             LAYOUT_FLAG = WindowManager.LayoutParams.TYPE_PHONE;
         }
@@ -97,11 +90,10 @@ public class FloatLogo extends Service implements View.OnClickListener {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mWindowManager.addView(mFloatingView, params);
 
-
         final GestureDetector gestureDetector = new GestureDetector(this, new SingleTapConfirm());
 
         //window funclion
-        TextView closeBtn=mFloatingView.findViewById(R.id.closeBtn);
+        TextView closeBtn = mFloatingView.findViewById(R.id.closeBtn);
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,69 +102,68 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
+        final LinearLayout player = mFloatingView.findViewById(R.id.players);
+        final LinearLayout items = mFloatingView.findViewById(R.id.items);
+        final LinearLayout theme = mFloatingView.findViewById(R.id.settingmenu);
+        final TextView playerBtn = mFloatingView.findViewById(R.id.playerBtn);
+        final ImageView playerBtn2 = mFloatingView.findViewById(R.id.playerBtn2);
+        final ImageView itemBtn = mFloatingView.findViewById(R.id.itemBtn);
+        final TextView vehicleBtn = mFloatingView.findViewById(R.id.vehicleBtn);
+        final TextView setting = mFloatingView.findViewById(R.id.setting);
+        final TextView setting2 = mFloatingView.findViewById(R.id.setting2);
 
-        final LinearLayout player =mFloatingView.findViewById(R.id.players);
-        final LinearLayout items =mFloatingView.findViewById(R.id.items);
-        final LinearLayout theme =mFloatingView.findViewById(R.id.settingmenu);
-        final TextView playerBtn=mFloatingView.findViewById(R.id.playerBtn);
-        final ImageView playerBtn2=mFloatingView.findViewById(R.id.playerBtn2);
-        final ImageView itemBtn=mFloatingView.findViewById(R.id.itemBtn);
-        final TextView vehicleBtn=mFloatingView.findViewById(R.id.vehicleBtn);
-        final TextView setting=mFloatingView.findViewById(R.id.setting);
-        final TextView setting2=mFloatingView.findViewById(R.id.setting2);
+        final LinearLayout itemspecial = mFloatingView.findViewById(R.id.spesialsitem);
+        final LinearLayout itemautoar = mFloatingView.findViewById(R.id.autoaritem);
+        final LinearLayout itemscope = mFloatingView.findViewById(R.id.scoperitem);
+        final LinearLayout itemsniper = mFloatingView.findViewById(R.id.snperitem);
+        final LinearLayout itemshotgun = mFloatingView.findViewById(R.id.shotgunpitem);
+        final LinearLayout itempistol = mFloatingView.findViewById(R.id.pidtolsitem);
+        final LinearLayout itemammo = mFloatingView.findViewById(R.id.ammossitem);
+        final LinearLayout itembaghelmet = mFloatingView.findViewById(R.id.baghelmetsitem);
+        final LinearLayout itemhealt = mFloatingView.findViewById(R.id.healthkitsitem);
+        final LinearLayout itemthrowble = mFloatingView.findViewById(R.id.throwblesitem);
+        final LinearLayout itemother = mFloatingView.findViewById(R.id.othersitem);
+        final LinearLayout itemvihicle = mFloatingView.findViewById(R.id.vihiclesitem);
 
-        final LinearLayout itemspecial =mFloatingView.findViewById(R.id.spesialsitem);
-        final LinearLayout itemautoar =mFloatingView.findViewById(R.id.autoaritem);
-        final LinearLayout itemscope =mFloatingView.findViewById(R.id.scoperitem);
-        final LinearLayout itemsniper =mFloatingView.findViewById(R.id.snperitem);
-        final LinearLayout itemshotgun =mFloatingView.findViewById(R.id.shotgunpitem);
-        final LinearLayout itempistol =mFloatingView.findViewById(R.id.pidtolsitem);
-        final LinearLayout itemammo =mFloatingView.findViewById(R.id.ammossitem);
-        final LinearLayout itembaghelmet =mFloatingView.findViewById(R.id.baghelmetsitem);
-        final LinearLayout itemhealt =mFloatingView.findViewById(R.id.healthkitsitem);
-        final LinearLayout itemthrowble =mFloatingView.findViewById(R.id.throwblesitem);
-        final LinearLayout itemother =mFloatingView.findViewById(R.id.othersitem);
-        final LinearLayout itemvihicle =mFloatingView.findViewById(R.id.vihiclesitem);
+        final TextView vihick = mFloatingView.findViewById(R.id.vihicleitem);
+        final TextView spesial = mFloatingView.findViewById(R.id.spesitem);
+        final TextView scope = mFloatingView.findViewById(R.id.scopeitem);
+        final TextView auto = mFloatingView.findViewById(R.id.autoitem);
+        final TextView sniper = mFloatingView.findViewById(R.id.sniperitem);
+        final TextView shotgun = mFloatingView.findViewById(R.id.shotgunitem);
+        final TextView pistol = mFloatingView.findViewById(R.id.pistolitem);
+        final TextView ammot = mFloatingView.findViewById(R.id.ammoitem);
+        final TextView baghelmat = mFloatingView.findViewById(R.id.baghelmetitem);
+        final TextView healthkit = mFloatingView.findViewById(R.id.healthkititem);
+        final TextView throwbles = mFloatingView.findViewById(R.id.Throwablesitem);
+        final TextView othert = mFloatingView.findViewById(R.id.otheritem);
 
-        final TextView vihick=mFloatingView.findViewById(R.id.vihicleitem);
-        final TextView spesial=mFloatingView.findViewById(R.id.spesitem);
-        final TextView scope=mFloatingView.findViewById(R.id.scopeitem);
-        final TextView auto=mFloatingView.findViewById(R.id.autoitem);
-        final TextView sniper=mFloatingView.findViewById(R.id.sniperitem);
-        final TextView shotgun=mFloatingView.findViewById(R.id.shotgunitem);
-        final TextView pistol=mFloatingView.findViewById(R.id.pistolitem);
-        final TextView ammot=mFloatingView.findViewById(R.id.ammoitem);
-        final TextView baghelmat=mFloatingView.findViewById(R.id.baghelmetitem);
-        final TextView healthkit=mFloatingView.findViewById(R.id.healthkititem);
-        final TextView throwbles=mFloatingView.findViewById(R.id.Throwablesitem);
-        final TextView othert=mFloatingView.findViewById(R.id.otheritem);
+        final ToggleButton style1 = mFloatingView.findViewById(R.id.showstyele);
+        final ToggleButton style2 = mFloatingView.findViewById(R.id.showstyele2);
+        final ToggleButton style3 = mFloatingView.findViewById(R.id.showstyele3);
+        final ToggleButton style4 = mFloatingView.findViewById(R.id.showstyele4);
+        final ToggleButton style5 = mFloatingView.findViewById(R.id.showstyele5);
+        final ToggleButton style6 = mFloatingView.findViewById(R.id.showstyele6);
+        final ToggleButton style7 = mFloatingView.findViewById(R.id.showstyele7);
+        final ToggleButton style8 = mFloatingView.findViewById(R.id.showstyele8);
+        final ToggleButton style9 = mFloatingView.findViewById(R.id.showstyele9);
 
-        final ToggleButton style1=mFloatingView.findViewById(R.id.showstyele);
-        final ToggleButton style2=mFloatingView.findViewById(R.id.showstyele2);
-        final ToggleButton style3=mFloatingView.findViewById(R.id.showstyele3);
-        final ToggleButton style4=mFloatingView.findViewById(R.id.showstyele4);
-        final ToggleButton style5=mFloatingView.findViewById(R.id.showstyele5);
-        final ToggleButton style6=mFloatingView.findViewById(R.id.showstyele6);
-        final ToggleButton style7=mFloatingView.findViewById(R.id.showstyele7);
-        final ToggleButton style8=mFloatingView.findViewById(R.id.showstyele8);
-        final ToggleButton style9=mFloatingView.findViewById(R.id.showstyele9);
-
-        final CardView tema=mFloatingView.findViewById(R.id.themebox);
-        final CardView tema2=mFloatingView.findViewById(R.id.themeskeleton);
-        final CardView tema3=mFloatingView.findViewById(R.id.themeshead);
-        final CardView tema4=mFloatingView.findViewById(R.id.themeline);
-        final CardView tema5=mFloatingView.findViewById(R.id.themealert);
-        final CardView tema6=mFloatingView.findViewById(R.id.themeitem);
-        final CardView tema7=mFloatingView.findViewById(R.id.themeisname);
-        final CardView tema8=mFloatingView.findViewById(R.id.themeisDist);
-        final CardView tema9=mFloatingView.findViewById(R.id.themeisEnemyWeapon);
+        final CardView tema = mFloatingView.findViewById(R.id.themebox);
+        final CardView tema2 = mFloatingView.findViewById(R.id.themeskeleton);
+        final CardView tema3 = mFloatingView.findViewById(R.id.themeshead);
+        final CardView tema4 = mFloatingView.findViewById(R.id.themeline);
+        final CardView tema5 = mFloatingView.findViewById(R.id.themealert);
+        final CardView tema6 = mFloatingView.findViewById(R.id.themeitem);
+        final CardView tema7 = mFloatingView.findViewById(R.id.themeisname);
+        final CardView tema8 = mFloatingView.findViewById(R.id.themeisDist);
+        final CardView tema9 = mFloatingView.findViewById(R.id.themeisEnemyWeapon);
 
         style1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema.setVisibility(View.GONE);
                 }
             }
@@ -181,9 +172,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema2.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema2.setVisibility(View.GONE);
                 }
             }
@@ -192,9 +183,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema3.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema3.setVisibility(View.GONE);
                 }
             }
@@ -203,9 +194,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema4.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema4.setVisibility(View.GONE);
                 }
             }
@@ -214,9 +205,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema5.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema5.setVisibility(View.GONE);
                 }
             }
@@ -225,9 +216,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema6.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema6.setVisibility(View.GONE);
                 }
             }
@@ -236,9 +227,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema7.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema7.setVisibility(View.GONE);
                 }
             }
@@ -247,9 +238,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema8.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema8.setVisibility(View.GONE);
                 }
             }
@@ -258,9 +249,9 @@ public class FloatLogo extends Service implements View.OnClickListener {
         style9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     tema9.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tema9.setVisibility(View.GONE);
                 }
             }
@@ -307,7 +298,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -352,7 +342,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -397,7 +386,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -442,7 +430,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -487,7 +474,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -532,7 +518,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -577,7 +562,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -622,7 +606,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -667,7 +650,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -712,7 +694,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.VISIBLE);
                 itemother.setVisibility(View.GONE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -757,7 +738,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.VISIBLE);
                 itemvihicle.setVisibility(View.GONE);
-
             }
         });
 
@@ -802,10 +782,8 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 itempistol.setVisibility(View.GONE);
                 itemthrowble.setVisibility(View.GONE);
                 itemother.setVisibility(View.GONE);
-
             }
         });
-
 
         playerBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -875,8 +853,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-
-
         //floating window setting
         mFloatingView.findViewById(R.id.relativeLayoutParent).setOnTouchListener(new View.OnTouchListener() {
             private int initialX;
@@ -900,7 +876,6 @@ public class FloatLogo extends Service implements View.OnClickListener {
                             initialTouchY = event.getRawY();
                             return true;
 
-
                         case MotionEvent.ACTION_MOVE:
                             //this code is helping the widget to move around the screen with fingers
                             params.x = initialX + (int) (event.getRawX() - initialTouchX);
@@ -913,11 +888,8 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 }
             }
         });
-
-
-
-
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -940,318 +912,319 @@ public class FloatLogo extends Service implements View.OnClickListener {
         }*/
     }
 
-    private String getType(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getString("type","1");
+    private String getType() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getString("type", "1");
     }
-    private void  setValue(String key,boolean b) {
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putBoolean(key,b);
+
+    private void setValue(String key, boolean b) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putBoolean(key, b);
         ed.apply();
-
     }
 
-    boolean getConfig(String key){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return  sp.getBoolean(key,false);
+    boolean getConfig(String key) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getBoolean(key, false);
         // return !key.equals("");
     }
-    void setFps(int fps){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("fps",fps);
-        ed.apply();
-    }
-    void setPosition(int position){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("position",position);
+
+    void setFps(int fps) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("fps", fps);
         ed.apply();
     }
 
-    void setSize(int size){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("size",size);
+    void setPosition(int position) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("position", position);
         ed.apply();
     }
 
-    void setStrokeBox(int StrokeBox){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("StrokeBox",StrokeBox);
+    void setSize(int size) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("size", size);
         ed.apply();
     }
 
-    void setStrokeSkeleton(int StrokeSkeleton){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("StrokeSkeleton",StrokeSkeleton);
+    void setStrokeBox(int StrokeBox) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("StrokeBox", StrokeBox);
         ed.apply();
     }
 
-    void setStrokeLine(int StrokeLine){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("StrokeLine",StrokeLine);
+    void setStrokeSkeleton(int StrokeSkeleton) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("StrokeSkeleton", StrokeSkeleton);
         ed.apply();
     }
 
-    void setColorBox(int ColorBox){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ColorBox",ColorBox);
+    void setStrokeLine(int StrokeLine) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("StrokeLine", StrokeLine);
         ed.apply();
     }
 
-    void setColorSkel(int ColorSkel){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ColorSkel",ColorSkel);
+    void setColorBox(int ColorBox) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ColorBox", ColorBox);
         ed.apply();
     }
 
-    void setColorHead(int ColorHead){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ColorHead",ColorHead);
+    void setColorSkel(int ColorSkel) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ColorSkel", ColorSkel);
         ed.apply();
     }
 
-    void setColorLine(int ColorLine){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ColorLine",ColorLine);
+    void setColorHead(int ColorHead) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ColorHead", ColorHead);
         ed.apply();
     }
 
-    void setColorAlert(int ColorAlert){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ColorAlert",ColorAlert);
+    void setColorLine(int ColorLine) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ColorLine", ColorLine);
         ed.apply();
     }
 
-    void setColorAlertText(int ColorAlertText){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ColorAlertText",ColorAlertText);
+    void setColorAlert(int ColorAlert) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ColorAlert", ColorAlert);
         ed.apply();
     }
 
-    void setItemSIze(int ItemSize){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ItemSize",ItemSize);
+    void setColorAlertText(int ColorAlertText) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ColorAlertText", ColorAlertText);
         ed.apply();
     }
 
-    void setItemPosition(int ItemPosition){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ItemPosition",ItemPosition);
+    void setItemSIze(int ItemSize) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ItemSize", ItemSize);
         ed.apply();
     }
 
-    void setEnemyName(int EnemyName){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("EnemyName",EnemyName);
+    void setItemPosition(int ItemPosition) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ItemPosition", ItemPosition);
         ed.apply();
     }
 
-    void setEnemyNameText(int EnemyNameText){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("EnemyNameText",EnemyNameText);
+    void setEnemyName(int EnemyName) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("EnemyName", EnemyName);
         ed.apply();
     }
 
-    void setEnemyDistance(int EnemyDistance){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("EnemyDistance",EnemyDistance);
+    void setEnemyNameText(int EnemyNameText) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("EnemyNameText", EnemyNameText);
         ed.apply();
     }
 
-    void setEnemyDistanceText(int EnemyDistanceText){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("EnemyDistanceText",EnemyDistanceText);
+    void setEnemyDistance(int EnemyDistance) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("EnemyDistance", EnemyDistance);
         ed.apply();
     }
 
-    void setEnemyWeapon(int EnemyWeapon){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("EnemyWeapon",EnemyWeapon);
+    void setEnemyDistanceText(int EnemyDistanceText) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("EnemyDistanceText", EnemyDistanceText);
         ed.apply();
     }
 
-    void setEnemyWeaponText(int EnemyWeaponText){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("EnemyWeaponText",EnemyWeaponText);
+    void setEnemyWeapon(int EnemyWeapon) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("EnemyWeapon", EnemyWeapon);
         ed.apply();
     }
 
-    void setColorCrosHair(int ColorCrosHair){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("ColorCrosHair",ColorCrosHair);
+    void setEnemyWeaponText(int EnemyWeaponText) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("EnemyWeaponText", EnemyWeaponText);
         ed.apply();
     }
 
-    void setStrokeCrosHair(int StrokeCrosHair){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("StrokeCrosHair",StrokeCrosHair);
+    void setColorCrosHair(int ColorCrosHair) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("ColorCrosHair", ColorCrosHair);
         ed.apply();
     }
 
-    void setStrokeCrosHair2(int StrokeCrosHair2){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("StrokeCrosHair2",StrokeCrosHair2);
+    void setStrokeCrosHair(int StrokeCrosHair) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("StrokeCrosHair", StrokeCrosHair);
         ed.apply();
     }
 
-    void setIDBgt(int IDBgt){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed= sp.edit();
-        ed.putInt("IDBgt",IDBgt);
+    void setStrokeCrosHair2(int StrokeCrosHair2) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("StrokeCrosHair2", StrokeCrosHair2);
         ed.apply();
     }
 
-    int getColorCrosHair(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ColorCrosHair",100);
+    void setIDBgt(int IDBgt) {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putInt("IDBgt", IDBgt);
+        ed.apply();
     }
 
-    int getStrokeCrosHair(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("StrokeCrosHair",200);
+    int getColorCrosHair() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ColorCrosHair", 100);
     }
 
-    int getStrokeCrosHair2(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("StrokeCrosHair2",0);
+    int getStrokeCrosHair() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("StrokeCrosHair", 200);
     }
 
-    int getIDBgt(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("IDBgt",100);
+    int getStrokeCrosHair2() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("StrokeCrosHair2", 0);
     }
 
-    int getEnemyName(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("EnemyName",100);
+    int getIDBgt() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("IDBgt", 100);
     }
 
-    int getEnemyDistance(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("EnemyDistance",100);
+    int getEnemyName() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("EnemyName", 100);
     }
 
-    int getEnemyWeapon(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("EnemyWeapon",100);
+    int getEnemyDistance() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("EnemyDistance", 100);
     }
 
-    int getEnemyNameText(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("EnemyNameText",100);
+    int getEnemyWeapon() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("EnemyWeapon", 100);
     }
 
-    int getEnemyDistanceText(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("EnemyDistanceText",100);
+    int getEnemyNameText() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("EnemyNameText", 100);
     }
 
-    int getEnemyWeaponText(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("EnemyWeaponText",100);
+    int getEnemyDistanceText() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("EnemyDistanceText", 100);
     }
 
-    int getItemSize(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ItemSize",0);
+    int getEnemyWeaponText() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("EnemyWeaponText", 100);
     }
 
-    int getItemPosition(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ItemPosition",0);
+    int getItemSize() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ItemSize", 0);
     }
 
-    int getColorBox(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ColorBox",100);
+    int getItemPosition() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ItemPosition", 0);
     }
 
-    int getColorSkel(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ColorSkel",100);
+    int getColorBox() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ColorBox", 100);
     }
 
-    int getColorHead(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ColorHead",100);
+    int getColorSkel() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ColorSkel", 100);
     }
 
-    int getColorLine(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ColorLine",100);
+    int getColorHead() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ColorHead", 100);
     }
 
-    int getColorAlert(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ColorAlert",100);
+    int getColorLine() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ColorLine", 100);
     }
 
-    int getColorAlertText(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("ColorAlertText",100);
+    int getColorAlert() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ColorAlert", 100);
     }
 
-    int getFps(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("fps",100);
+    int getColorAlertText() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("ColorAlertText", 100);
     }
 
-    int getPosition(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("position",0);
+    int getFps() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("fps", 100);
     }
 
-    int getSize(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("size",0);
+    int getPosition() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("position", 0);
     }
 
-    int getStrokeBox(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("StrokeBox",0);
+    int getSize() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("size", 0);
     }
 
-    int getStrokeSkeleton(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("StrokeSkeleton",0);
+    int getStrokeBox() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("StrokeBox", 0);
     }
 
-    int getStrokeLine(){
-        SharedPreferences sp=this.getSharedPreferences("espValue",Context.MODE_PRIVATE);
-        return sp.getInt("StrokeLine",0);
+    int getStrokeSkeleton() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("StrokeSkeleton", 0);
+    }
+
+    int getStrokeLine() {
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
+        return sp.getInt("StrokeLine", 0);
     }
 
     public static void HideFloat() {
-
-        if (Instance != null)
-        {
+        if (Instance != null) {
             Instance.Hide();
         }
     }
-    public void Hide(){
+
+    public void Hide() {
         stopSelf();
         exit(-1);
         /*Instance = null;
@@ -1272,7 +1245,8 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }*/
     }
 
-    void Init(){
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    void Init() {
         final CheckBox Dual = mFloatingView.findViewById(R.id.dual);
         final CheckBox Material = mFloatingView.findViewById(R.id.meterial);
         final CheckBox MaterialDistance = mFloatingView.findViewById(R.id.meterialdistance);
@@ -1331,6 +1305,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Buggy.getText()), Buggy.isChecked());
             }
         });
+
         final CheckBox UAZ = mFloatingView.findViewById(R.id.UAZ);
         UAZ.setChecked(getConfig((String) UAZ.getText()));
         UAZ.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1339,6 +1314,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(UAZ.getText()), UAZ.isChecked());
             }
         });
+
         final CheckBox Trike = mFloatingView.findViewById(R.id.Trike);
         Trike.setChecked(getConfig((String) Trike.getText()));
         Trike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1347,6 +1323,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Trike.getText()), Trike.isChecked());
             }
         });
+
         final CheckBox Bike = mFloatingView.findViewById(R.id.Bike);
         Bike.setChecked(getConfig((String) Bike.getText()));
         Bike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1355,6 +1332,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Bike.getText()), Bike.isChecked());
             }
         });
+
         final CheckBox Dacia = mFloatingView.findViewById(R.id.Dacia);
         Dacia.setChecked(getConfig((String) Dacia.getText()));
         Dacia.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1363,6 +1341,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Dacia.getText()), Dacia.isChecked());
             }
         });
+
         final CheckBox Jet = mFloatingView.findViewById(R.id.Jet);
         Jet.setChecked(getConfig((String) Jet.getText()));
         Jet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1371,6 +1350,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Jet.getText()), Jet.isChecked());
             }
         });
+
         final CheckBox Boat = mFloatingView.findViewById(R.id.Boat);
         Boat.setChecked(getConfig((String) Boat.getText()));
         Boat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1379,6 +1359,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Boat.getText()), Boat.isChecked());
             }
         });
+
         final CheckBox Scooter = mFloatingView.findViewById(R.id.Scooter);
         Scooter.setChecked(getConfig((String) Scooter.getText()));
         Scooter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1387,6 +1368,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Scooter.getText()), Scooter.isChecked());
             }
         });
+
         final CheckBox Bus = mFloatingView.findViewById(R.id.Bus);
         Bus.setChecked(getConfig((String) Bus.getText()));
         Bus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1395,6 +1377,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Bus.getText()), Bus.isChecked());
             }
         });
+
         final CheckBox Mirado = mFloatingView.findViewById(R.id.Mirado);
         Mirado.setChecked(getConfig((String) Mirado.getText()));
         Mirado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1403,6 +1386,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Mirado.getText()), Mirado.isChecked());
             }
         });
+
         final CheckBox Rony = mFloatingView.findViewById(R.id.Rony);
         Rony.setChecked(getConfig((String) Rony.getText()));
         Rony.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1411,6 +1395,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Rony.getText()), Rony.isChecked());
             }
         });
+
         final CheckBox Snowbike = mFloatingView.findViewById(R.id.Snowbike);
         Snowbike.setChecked(getConfig((String) Snowbike.getText()));
         Snowbike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1419,6 +1404,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Snowbike.getText()), Snowbike.isChecked());
             }
         });
+
         final CheckBox Snowmobile = mFloatingView.findViewById(R.id.Snowmobile);
         Snowmobile.setChecked(getConfig((String) Snowmobile.getText()));
         Snowmobile.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1427,6 +1413,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Snowmobile.getText()), Snowmobile.isChecked());
             }
         });
+
         final CheckBox Tempo = mFloatingView.findViewById(R.id.Tempo);
         Tempo.setChecked(getConfig((String) Tempo.getText()));
         Tempo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1435,6 +1422,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Tempo.getText()), Tempo.isChecked());
             }
         });
+
         final CheckBox Truck = mFloatingView.findViewById(R.id.Truck);
         Truck.setChecked(getConfig((String) Truck.getText()));
         Truck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1443,6 +1431,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Truck.getText()), Truck.isChecked());
             }
         });
+
         final CheckBox MonsterTruck = mFloatingView.findViewById(R.id.MonsterTruck);
         MonsterTruck.setChecked(getConfig((String) MonsterTruck.getText()));
         MonsterTruck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1451,6 +1440,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(MonsterTruck.getText()), MonsterTruck.isChecked());
             }
         });
+
         final CheckBox BRDM = mFloatingView.findViewById(R.id.BRDM);
         BRDM.setChecked(getConfig((String) BRDM.getText()));
         BRDM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1459,6 +1449,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(BRDM.getText()), BRDM.isChecked());
             }
         });
+
         final CheckBox LadaNiva = mFloatingView.findViewById(R.id.LadaNiva);
         LadaNiva.setChecked(getConfig((String) LadaNiva.getText()));
         LadaNiva.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1467,6 +1458,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(LadaNiva.getText()), LadaNiva.isChecked());
             }
         });
+
         final CheckBox CheekPad = mFloatingView.findViewById(R.id.CheekPad);
         CheekPad.setChecked(getConfig((String) CheekPad.getText()));
         CheekPad.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1475,6 +1467,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(CheekPad.getText()), CheekPad.isChecked());
             }
         });
+
         final CheckBox AirDrop = mFloatingView.findViewById(R.id.AirDrop);
         AirDrop.setChecked(getConfig((String) AirDrop.getText()));
         AirDrop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1483,6 +1476,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(AirDrop.getText()), AirDrop.isChecked());
             }
         });
+
         final CheckBox Crate = mFloatingView.findViewById(R.id.Crate);
         Crate.setChecked(getConfig((String) Crate.getText()));
         Crate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1491,6 +1485,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(Crate.getText()), Crate.isChecked());
             }
         });
+
         final CheckBox DropPlane = mFloatingView.findViewById(R.id.DropPlane);
         DropPlane.setChecked(getConfig((String) DropPlane.getText()));
         DropPlane.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1499,118 +1494,123 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 setValue(String.valueOf(DropPlane.getText()), DropPlane.isChecked());
             }
         });
+
         final Switch isEnemyWeapon = mFloatingView.findViewById(R.id.isEnemyWeapon);
         isEnemyWeapon.setChecked(getConfig((String) isEnemyWeapon.getText()));
-        SettingValue(10,getConfig((String) isEnemyWeapon.getText()));
+        SettingValue(10, getConfig((String) isEnemyWeapon.getText()));
         isEnemyWeapon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isEnemyWeapon.getText()), isEnemyWeapon.isChecked());
-                SettingValue(10,isEnemyWeapon.isChecked());
+                SettingValue(10, isEnemyWeapon.isChecked());
             }
         });
+
         final Switch isGrenadeWarning = mFloatingView.findViewById(R.id.isGrenadeWarning);
         isGrenadeWarning.setChecked(getConfig((String) isGrenadeWarning.getText()));
-        SettingValue(9,getConfig((String) isGrenadeWarning.getText()));
+        SettingValue(9, getConfig((String) isGrenadeWarning.getText()));
         isGrenadeWarning.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isGrenadeWarning.getText()), isGrenadeWarning.isChecked());
-                SettingValue(9,isGrenadeWarning.isChecked());
+                SettingValue(9, isGrenadeWarning.isChecked());
             }
         });
+
         final Switch isSkelton = mFloatingView.findViewById(R.id.isSkelton);
         isSkelton.setChecked(getConfig((String) isSkelton.getText()));
-        SettingValue(8,getConfig((String) isSkelton.getText()));
+        SettingValue(8, getConfig((String) isSkelton.getText()));
         isSkelton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isSkelton.getText()), isSkelton.isChecked());
-                SettingValue(8,isSkelton.isChecked());
+                SettingValue(8, isSkelton.isChecked());
             }
         });
+
         final Switch isHead = mFloatingView.findViewById(R.id.isHead);
         isHead.setChecked(getConfig((String) isHead.getText()));
-        SettingValue(6,getConfig((String) isHead.getText()));
+        SettingValue(6, getConfig((String) isHead.getText()));
         isHead.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isHead.getText()), isHead.isChecked());
-                SettingValue(6,isHead.isChecked());
+                SettingValue(6, isHead.isChecked());
             }
         });
+
         final Switch isBox = mFloatingView.findViewById(R.id.isBox);
         isBox.setChecked(getConfig((String) isBox.getText()));
-        SettingValue(1,getConfig((String) isBox.getText()));
+        SettingValue(1, getConfig((String) isBox.getText()));
         isBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isBox.getText()), isBox.isChecked());
-                SettingValue(1,isBox.isChecked());
+                SettingValue(1, isBox.isChecked());
             }
         });
+
         final Switch isLine = mFloatingView.findViewById(R.id.isLine);
         isLine.setChecked(getConfig((String) isLine.getText()));
-        SettingValue(2,getConfig((String) isLine.getText()));
+        SettingValue(2, getConfig((String) isLine.getText()));
         isLine.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isLine.getText()), isLine.isChecked());
-                SettingValue(2,isLine.isChecked());
+                SettingValue(2, isLine.isChecked());
             }
         });
+
         final Switch isBack = mFloatingView.findViewById(R.id.isBack);
         isBack.setChecked(getConfig((String) isBack.getText()));
-        SettingValue(7,getConfig((String) isBack.getText()));
+        SettingValue(7, getConfig((String) isBack.getText()));
         isBack.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isBack.getText()), isBack.isChecked());
-                SettingValue(7,isBack.isChecked());
+                SettingValue(7, isBack.isChecked());
             }
         });
 
         final Switch isHealth = mFloatingView.findViewById(R.id.isHealth);
         isHealth.setChecked(getConfig((String) isHealth.getText()));
-        SettingValue(4,getConfig((String) isHealth.getText()));
+        SettingValue(4, getConfig((String) isHealth.getText()));
         isHealth.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isHealth.getText()), isHealth.isChecked());
-                SettingValue(4,isHealth.isChecked());
+                SettingValue(4, isHealth.isChecked());
             }
         });
 
         final Switch isName = mFloatingView.findViewById(R.id.isName);
         isName.setChecked(getConfig((String) isName.getText()));
-        SettingValue(5,getConfig((String) isName.getText()));
+        SettingValue(5, getConfig((String) isName.getText()));
         isName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isName.getText()), isName.isChecked());
-                SettingValue(5,isName.isChecked());
+                SettingValue(5, isName.isChecked());
             }
         });
+
         final Switch isDist = mFloatingView.findViewById(R.id.isDist);
         isDist.setChecked(getConfig((String) isDist.getText()));
-        SettingValue(3,getConfig((String) isDist.getText()));
+        SettingValue(3, getConfig((String) isDist.getText()));
         isDist.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setValue(String.valueOf(isDist.getText()), isDist.isChecked());
-                SettingValue(3,isDist.isChecked());
+                SettingValue(3, isDist.isChecked());
             }
         });
-
-
-
 
         final CheckBox canted = mFloatingView.findViewById(R.id.canted);
         canted.setChecked(getConfig((String) canted.getText()));
         canted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(canted.getText()),canted.isChecked());
+                setValue(String.valueOf(canted.getText()), canted.isChecked());
             }
         });
 
@@ -1619,7 +1619,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         reddot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(reddot.getText()),reddot.isChecked());
+                setValue(String.valueOf(reddot.getText()), reddot.isChecked());
             }
         });
 
@@ -1628,7 +1628,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         hollow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(hollow.getText()),hollow.isChecked());
+                setValue(String.valueOf(hollow.getText()), hollow.isChecked());
             }
         });
 
@@ -1637,7 +1637,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         twox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(twox.getText()),twox.isChecked());
+                setValue(String.valueOf(twox.getText()), twox.isChecked());
             }
         });
 
@@ -1646,7 +1646,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         threex.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(threex.getText()),threex.isChecked());
+                setValue(String.valueOf(threex.getText()), threex.isChecked());
             }
         });
 
@@ -1655,7 +1655,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         fourx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(fourx.getText()),fourx.isChecked());
+                setValue(String.valueOf(fourx.getText()), fourx.isChecked());
             }
         });
 
@@ -1664,7 +1664,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         sixx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(sixx.getText()),sixx.isChecked());
+                setValue(String.valueOf(sixx.getText()), sixx.isChecked());
             }
         });
 
@@ -1673,7 +1673,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         eightx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(eightx.getText()),eightx.isChecked());
+                setValue(String.valueOf(eightx.getText()), eightx.isChecked());
             }
         });
 
@@ -1682,7 +1682,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         AWM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(AWM.getText()),AWM.isChecked());
+                setValue(String.valueOf(AWM.getText()), AWM.isChecked());
             }
         });
 
@@ -1691,7 +1691,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         QBU.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(QBU.getText()),QBU.isChecked());
+                setValue(String.valueOf(QBU.getText()), QBU.isChecked());
             }
         });
 
@@ -1700,7 +1700,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SLR.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SLR.getText()),SLR.isChecked());
+                setValue(String.valueOf(SLR.getText()), SLR.isChecked());
             }
         });
 
@@ -1709,7 +1709,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SKS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SKS.getText()),SKS.isChecked());
+                setValue(String.valueOf(SKS.getText()), SKS.isChecked());
             }
         });
 
@@ -1718,7 +1718,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Mini14.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Mini14.getText()),Mini14.isChecked());
+                setValue(String.valueOf(Mini14.getText()), Mini14.isChecked());
             }
         });
 
@@ -1727,7 +1727,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         M24.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(M24.getText()),M24.isChecked());
+                setValue(String.valueOf(M24.getText()), M24.isChecked());
             }
         });
 
@@ -1736,7 +1736,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Kar98k.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Kar98k.getText()),Kar98k.isChecked());
+                setValue(String.valueOf(Kar98k.getText()), Kar98k.isChecked());
             }
         });
 
@@ -1745,7 +1745,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         VSS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(VSS.getText()),VSS.isChecked());
+                setValue(String.valueOf(VSS.getText()), VSS.isChecked());
             }
         });
 
@@ -1754,7 +1754,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Win94.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Win94.getText()),Win94.isChecked());
+                setValue(String.valueOf(Win94.getText()), Win94.isChecked());
             }
         });
 
@@ -1763,7 +1763,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         AUG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(AUG.getText()),AUG.isChecked());
+                setValue(String.valueOf(AUG.getText()), AUG.isChecked());
             }
         });
 
@@ -1772,7 +1772,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         M762.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(M762.getText()),M762.isChecked());
+                setValue(String.valueOf(M762.getText()), M762.isChecked());
             }
         });
 
@@ -1781,7 +1781,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SCARL.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SCARL.getText()),SCARL.isChecked());
+                setValue(String.valueOf(SCARL.getText()), SCARL.isChecked());
             }
         });
 
@@ -1790,7 +1790,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         M416.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(M416.getText()),M416.isChecked());
+                setValue(String.valueOf(M416.getText()), M416.isChecked());
             }
         });
 
@@ -1799,7 +1799,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         M16A4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(M16A4.getText()),M16A4.isChecked());
+                setValue(String.valueOf(M16A4.getText()), M16A4.isChecked());
             }
         });
 
@@ -1808,7 +1808,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Mk47Mutant.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Mk47Mutant.getText()),Mk47Mutant.isChecked());
+                setValue(String.valueOf(Mk47Mutant.getText()), Mk47Mutant.isChecked());
             }
         });
 
@@ -1817,7 +1817,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         G36C.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(G36C.getText()),G36C.isChecked());
+                setValue(String.valueOf(G36C.getText()), G36C.isChecked());
             }
         });
 
@@ -1826,7 +1826,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         QBZ.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(QBZ.getText()),QBZ.isChecked());
+                setValue(String.valueOf(QBZ.getText()), QBZ.isChecked());
             }
         });
 
@@ -1835,7 +1835,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         AKM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(AKM.getText()),AKM.isChecked());
+                setValue(String.valueOf(AKM.getText()), AKM.isChecked());
             }
         });
 
@@ -1844,7 +1844,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Groza.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Groza.getText()),Groza.isChecked());
+                setValue(String.valueOf(Groza.getText()), Groza.isChecked());
             }
         });
 
@@ -1853,7 +1853,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         S12K.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(S12K.getText()),S12K.isChecked());
+                setValue(String.valueOf(S12K.getText()), S12K.isChecked());
             }
         });
 
@@ -1862,7 +1862,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         DBS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(DBS.getText()),DBS.isChecked());
+                setValue(String.valueOf(DBS.getText()), DBS.isChecked());
             }
         });
 
@@ -1871,7 +1871,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         S686.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(S686.getText()),S686.isChecked());
+                setValue(String.valueOf(S686.getText()), S686.isChecked());
             }
         });
 
@@ -1880,7 +1880,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         S1897.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(S1897.getText()),S1897.isChecked());
+                setValue(String.valueOf(S1897.getText()), S1897.isChecked());
             }
         });
 
@@ -1889,7 +1889,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SawedOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SawedOff.getText()),SawedOff.isChecked());
+                setValue(String.valueOf(SawedOff.getText()), SawedOff.isChecked());
             }
         });
 
@@ -1898,7 +1898,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         TommyGun.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(TommyGun.getText()),TommyGun.isChecked());
+                setValue(String.valueOf(TommyGun.getText()), TommyGun.isChecked());
             }
         });
 
@@ -1907,7 +1907,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         MP5K.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(MP5K.getText()),MP5K.isChecked());
+                setValue(String.valueOf(MP5K.getText()), MP5K.isChecked());
             }
         });
 
@@ -1916,7 +1916,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Vector.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Vector.getText()),Vector.isChecked());
+                setValue(String.valueOf(Vector.getText()), Vector.isChecked());
             }
         });
 
@@ -1925,7 +1925,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Uzi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Uzi.getText()),Uzi.isChecked());
+                setValue(String.valueOf(Uzi.getText()), Uzi.isChecked());
             }
         });
 
@@ -1934,7 +1934,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         R1895.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(R1895.getText()),R1895.isChecked());
+                setValue(String.valueOf(R1895.getText()), R1895.isChecked());
             }
         });
 
@@ -1943,7 +1943,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Vz61.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Vz61.getText()),Vz61.isChecked());
+                setValue(String.valueOf(Vz61.getText()), Vz61.isChecked());
             }
         });
 
@@ -1952,7 +1952,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         P92.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(P92.getText()),P92.isChecked());
+                setValue(String.valueOf(P92.getText()), P92.isChecked());
             }
         });
 
@@ -1961,7 +1961,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         P18C.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(P18C.getText()),P18C.isChecked());
+                setValue(String.valueOf(P18C.getText()), P18C.isChecked());
             }
         });
 
@@ -1970,7 +1970,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         R45.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(R45.getText()),R45.isChecked());
+                setValue(String.valueOf(R45.getText()), R45.isChecked());
             }
         });
 
@@ -1979,7 +1979,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         P1911.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(P1911.getText()),P1911.isChecked());
+                setValue(String.valueOf(P1911.getText()), P1911.isChecked());
             }
         });
 
@@ -1988,7 +1988,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         DesertEagle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(DesertEagle.getText()),DesertEagle.isChecked());
+                setValue(String.valueOf(DesertEagle.getText()), DesertEagle.isChecked());
             }
         });
 
@@ -1997,7 +1997,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Sickle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Sickle.getText()),Sickle.isChecked());
+                setValue(String.valueOf(Sickle.getText()), Sickle.isChecked());
             }
         });
 
@@ -2006,7 +2006,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Machete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Machete.getText()),Machete.isChecked());
+                setValue(String.valueOf(Machete.getText()), Machete.isChecked());
             }
         });
 
@@ -2015,7 +2015,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Pan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Pan.getText()),Pan.isChecked());
+                setValue(String.valueOf(Pan.getText()), Pan.isChecked());
             }
         });
 
@@ -2024,7 +2024,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Mk14.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Mk14.getText()),Mk14.isChecked());
+                setValue(String.valueOf(Mk14.getText()), Mk14.isChecked());
             }
         });
 
@@ -2033,7 +2033,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         sst.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(sst.getText()),sst.isChecked());
+                setValue(String.valueOf(sst.getText()), sst.isChecked());
             }
         });
 
@@ -2042,7 +2042,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ffACP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ffACP.getText()),ffACP.isChecked());
+                setValue(String.valueOf(ffACP.getText()), ffACP.isChecked());
             }
         });
 
@@ -2051,7 +2051,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ffs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ffs.getText()),ffs.isChecked());
+                setValue(String.valueOf(ffs.getText()), ffs.isChecked());
             }
         });
 
@@ -2060,7 +2060,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         nmm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(nmm.getText()),nmm.isChecked());
+                setValue(String.valueOf(nmm.getText()), nmm.isChecked());
             }
         });
 
@@ -2069,7 +2069,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         tzzMagnum.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(tzzMagnum.getText()),tzzMagnum.isChecked());
+                setValue(String.valueOf(tzzMagnum.getText()), tzzMagnum.isChecked());
             }
         });
 
@@ -2078,7 +2078,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         otGuage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(otGuage.getText()),otGuage.isChecked());
+                setValue(String.valueOf(otGuage.getText()), otGuage.isChecked());
             }
         });
 
@@ -2087,7 +2087,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Choke.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Choke.getText()),Choke.isChecked());
+                setValue(String.valueOf(Choke.getText()), Choke.isChecked());
             }
         });
 
@@ -2096,7 +2096,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SniperCompensator.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SniperCompensator.getText()),SniperCompensator.isChecked());
+                setValue(String.valueOf(SniperCompensator.getText()), SniperCompensator.isChecked());
             }
         });
 
@@ -2105,7 +2105,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         DP28.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(DP28.getText()),DP28.isChecked());
+                setValue(String.valueOf(DP28.getText()), DP28.isChecked());
             }
         });
 
@@ -2114,7 +2114,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         M249.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(M249.getText()),M249.isChecked());
+                setValue(String.valueOf(M249.getText()), M249.isChecked());
             }
         });
 
@@ -2123,7 +2123,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Grenade.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Grenade.getText()),Grenade.isChecked());
+                setValue(String.valueOf(Grenade.getText()), Grenade.isChecked());
             }
         });
 
@@ -2132,7 +2132,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Smoke.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Smoke.getText()),Smoke.isChecked());
+                setValue(String.valueOf(Smoke.getText()), Smoke.isChecked());
             }
         });
 
@@ -2141,7 +2141,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Molotov.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Molotov.getText()),Molotov.isChecked());
+                setValue(String.valueOf(Molotov.getText()), Molotov.isChecked());
             }
         });
 
@@ -2150,7 +2150,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Painkiller.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Painkiller.getText()),Painkiller.isChecked());
+                setValue(String.valueOf(Painkiller.getText()), Painkiller.isChecked());
             }
         });
 
@@ -2159,7 +2159,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Adrenaline.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Adrenaline.getText()),Adrenaline.isChecked());
+                setValue(String.valueOf(Adrenaline.getText()), Adrenaline.isChecked());
             }
         });
 
@@ -2168,7 +2168,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         EnergyDrink.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(EnergyDrink.getText()),EnergyDrink.isChecked());
+                setValue(String.valueOf(EnergyDrink.getText()), EnergyDrink.isChecked());
             }
         });
 
@@ -2177,7 +2177,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         FirstAidKit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(FirstAidKit.getText()),FirstAidKit.isChecked());
+                setValue(String.valueOf(FirstAidKit.getText()), FirstAidKit.isChecked());
             }
         });
 
@@ -2186,7 +2186,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Bandage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Bandage.getText()),Bandage.isChecked());
+                setValue(String.valueOf(Bandage.getText()), Bandage.isChecked());
             }
         });
 
@@ -2195,7 +2195,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Medkit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Medkit.getText()),Medkit.isChecked());
+                setValue(String.valueOf(Medkit.getText()), Medkit.isChecked());
             }
         });
 
@@ -2204,7 +2204,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         FlareGun.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(FlareGun.getText()),FlareGun.isChecked());
+                setValue(String.valueOf(FlareGun.getText()), FlareGun.isChecked());
             }
         });
 
@@ -2213,7 +2213,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         GullieSuit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(GullieSuit.getText()),GullieSuit.isChecked());
+                setValue(String.valueOf(GullieSuit.getText()), GullieSuit.isChecked());
             }
         });
 
@@ -2222,7 +2222,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         UMP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(UMP.getText()),UMP.isChecked());
+                setValue(String.valueOf(UMP.getText()), UMP.isChecked());
             }
         });
 
@@ -2231,7 +2231,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Bizon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Bizon.getText()),Bizon.isChecked());
+                setValue(String.valueOf(Bizon.getText()), Bizon.isChecked());
             }
         });
 
@@ -2240,7 +2240,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         CompensatorSMG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(CompensatorSMG.getText()),CompensatorSMG.isChecked());
+                setValue(String.valueOf(CompensatorSMG.getText()), CompensatorSMG.isChecked());
             }
         });
 
@@ -2249,7 +2249,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         FlashHiderSMG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(FlashHiderSMG.getText()),FlashHiderSMG.isChecked());
+                setValue(String.valueOf(FlashHiderSMG.getText()), FlashHiderSMG.isChecked());
             }
         });
 
@@ -2258,7 +2258,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         FlashHiderAr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(FlashHiderAr.getText()),FlashHiderAr.isChecked());
+                setValue(String.valueOf(FlashHiderAr.getText()), FlashHiderAr.isChecked());
             }
         });
 
@@ -2267,7 +2267,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ArCompensator.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ArCompensator.getText()),ArCompensator.isChecked());
+                setValue(String.valueOf(ArCompensator.getText()), ArCompensator.isChecked());
             }
         });
 
@@ -2276,7 +2276,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         TacticalStock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(TacticalStock.getText()),TacticalStock.isChecked());
+                setValue(String.valueOf(TacticalStock.getText()), TacticalStock.isChecked());
             }
         });
 
@@ -2285,7 +2285,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Duckbill.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Duckbill.getText()),Duckbill.isChecked());
+                setValue(String.valueOf(Duckbill.getText()), Duckbill.isChecked());
             }
         });
 
@@ -2294,7 +2294,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         FlashHiderSniper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(FlashHiderSniper.getText()),FlashHiderSniper.isChecked());
+                setValue(String.valueOf(FlashHiderSniper.getText()), FlashHiderSniper.isChecked());
             }
         });
 
@@ -2303,7 +2303,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SuppressorSMG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SuppressorSMG.getText()),SuppressorSMG.isChecked());
+                setValue(String.valueOf(SuppressorSMG.getText()), SuppressorSMG.isChecked());
             }
         });
 
@@ -2312,7 +2312,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         HalfGrip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(HalfGrip.getText()),HalfGrip.isChecked());
+                setValue(String.valueOf(HalfGrip.getText()), HalfGrip.isChecked());
             }
         });
 
@@ -2321,7 +2321,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         StockMicroUZI.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(StockMicroUZI.getText()),StockMicroUZI.isChecked());
+                setValue(String.valueOf(StockMicroUZI.getText()), StockMicroUZI.isChecked());
             }
         });
 
@@ -2330,7 +2330,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SuppressorSniper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SuppressorSniper.getText()),SuppressorSniper.isChecked());
+                setValue(String.valueOf(SuppressorSniper.getText()), SuppressorSniper.isChecked());
             }
         });
 
@@ -2339,7 +2339,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         SuppressorAr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(SuppressorAr.getText()),SuppressorAr.isChecked());
+                setValue(String.valueOf(SuppressorAr.getText()), SuppressorAr.isChecked());
             }
         });
 
@@ -2348,7 +2348,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ExQdSniper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ExQdSniper.getText()),ExQdSniper.isChecked());
+                setValue(String.valueOf(ExQdSniper.getText()), ExQdSniper.isChecked());
             }
         });
 
@@ -2357,7 +2357,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         QdSMG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(QdSMG.getText()),QdSMG.isChecked());
+                setValue(String.valueOf(QdSMG.getText()), QdSMG.isChecked());
             }
         });
 
@@ -2366,7 +2366,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ExSMG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ExSMG.getText()),ExSMG.isChecked());
+                setValue(String.valueOf(ExSMG.getText()), ExSMG.isChecked());
             }
         });
 
@@ -2375,7 +2375,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         QdSniper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(QdSniper.getText()),QdSniper.isChecked());
+                setValue(String.valueOf(QdSniper.getText()), QdSniper.isChecked());
             }
         });
 
@@ -2384,7 +2384,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ExSniper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ExSniper.getText()),ExSniper.isChecked());
+                setValue(String.valueOf(ExSniper.getText()), ExSniper.isChecked());
             }
         });
 
@@ -2393,7 +2393,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ExAr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ExAr.getText()),ExAr.isChecked());
+                setValue(String.valueOf(ExAr.getText()), ExAr.isChecked());
             }
         });
 
@@ -2402,7 +2402,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ExQdAr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ExQdAr.getText()),ExQdAr.isChecked());
+                setValue(String.valueOf(ExQdAr.getText()), ExQdAr.isChecked());
             }
         });
 
@@ -2411,7 +2411,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         QdAr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(QdAr.getText()),QdAr.isChecked());
+                setValue(String.valueOf(QdAr.getText()), QdAr.isChecked());
             }
         });
 
@@ -2420,7 +2420,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ExQdSMG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ExQdSMG.getText()),ExQdSMG.isChecked());
+                setValue(String.valueOf(ExQdSMG.getText()), ExQdSMG.isChecked());
             }
         });
 
@@ -2429,7 +2429,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         QuiverCrossBow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(QuiverCrossBow.getText()),QuiverCrossBow.isChecked());
+                setValue(String.valueOf(QuiverCrossBow.getText()), QuiverCrossBow.isChecked());
             }
         });
 
@@ -2438,7 +2438,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         BulletLoop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(BulletLoop.getText()),BulletLoop.isChecked());
+                setValue(String.valueOf(BulletLoop.getText()), BulletLoop.isChecked());
             }
         });
 
@@ -2447,7 +2447,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         ThumbGrip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(ThumbGrip.getText()),ThumbGrip.isChecked());
+                setValue(String.valueOf(ThumbGrip.getText()), ThumbGrip.isChecked());
             }
         });
 
@@ -2456,7 +2456,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         LaserSight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(LaserSight.getText()),LaserSight.isChecked());
+                setValue(String.valueOf(LaserSight.getText()), LaserSight.isChecked());
             }
         });
 
@@ -2465,7 +2465,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         AngledGrip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(AngledGrip.getText()),AngledGrip.isChecked());
+                setValue(String.valueOf(AngledGrip.getText()), AngledGrip.isChecked());
             }
         });
 
@@ -2474,7 +2474,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         LightGrip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(LightGrip.getText()),LightGrip.isChecked());
+                setValue(String.valueOf(LightGrip.getText()), LightGrip.isChecked());
             }
         });
 
@@ -2483,7 +2483,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         VerticalGrip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(VerticalGrip.getText()),VerticalGrip.isChecked());
+                setValue(String.valueOf(VerticalGrip.getText()), VerticalGrip.isChecked());
             }
         });
 
@@ -2492,7 +2492,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         GasCan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(GasCan.getText()),GasCan.isChecked());
+                setValue(String.valueOf(GasCan.getText()), GasCan.isChecked());
             }
         });
 
@@ -2501,7 +2501,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Arrow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Arrow.getText()),Arrow.isChecked());
+                setValue(String.valueOf(Arrow.getText()), Arrow.isChecked());
             }
         });
 
@@ -2510,7 +2510,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         CrossBow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(CrossBow.getText()),CrossBow.isChecked());
+                setValue(String.valueOf(CrossBow.getText()), CrossBow.isChecked());
             }
         });
 
@@ -2519,7 +2519,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Baglvl1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Baglvl1.getText()),Baglvl1.isChecked());
+                setValue(String.valueOf(Baglvl1.getText()), Baglvl1.isChecked());
             }
         });
 
@@ -2528,7 +2528,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Baglvl2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Baglvl2.getText()),Baglvl2.isChecked());
+                setValue(String.valueOf(Baglvl2.getText()), Baglvl2.isChecked());
             }
         });
 
@@ -2537,7 +2537,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Baglvl3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Baglvl3.getText()),Baglvl3.isChecked());
+                setValue(String.valueOf(Baglvl3.getText()), Baglvl3.isChecked());
             }
         });
 
@@ -2546,7 +2546,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Helmetlvl1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Helmetlvl1.getText()),Helmetlvl1.isChecked());
+                setValue(String.valueOf(Helmetlvl1.getText()), Helmetlvl1.isChecked());
             }
         });
 
@@ -2555,7 +2555,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Helmetlvl2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Helmetlvl2.getText()),Helmetlvl2.isChecked());
+                setValue(String.valueOf(Helmetlvl2.getText()), Helmetlvl2.isChecked());
             }
         });
 
@@ -2564,7 +2564,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Helmetlvl3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Helmetlvl3.getText()),Helmetlvl3.isChecked());
+                setValue(String.valueOf(Helmetlvl3.getText()), Helmetlvl3.isChecked());
             }
         });
 
@@ -2573,7 +2573,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Vestlvl1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Vestlvl1.getText()),Vestlvl1.isChecked());
+                setValue(String.valueOf(Vestlvl1.getText()), Vestlvl1.isChecked());
             }
         });
 
@@ -2582,7 +2582,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Vestlvl2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Vestlvl2.getText()),Vestlvl2.isChecked());
+                setValue(String.valueOf(Vestlvl2.getText()), Vestlvl2.isChecked());
             }
         });
 
@@ -2591,7 +2591,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Vestlvl3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Vestlvl3.getText()),Vestlvl3.isChecked());
+                setValue(String.valueOf(Vestlvl3.getText()), Vestlvl3.isChecked());
             }
         });
 
@@ -2600,7 +2600,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Stung.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Stung.getText()),Stung.isChecked());
+                setValue(String.valueOf(Stung.getText()), Stung.isChecked());
             }
         });
 
@@ -2609,16 +2609,16 @@ public class FloatLogo extends Service implements View.OnClickListener {
         Crowbar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setValue(String.valueOf(Crowbar.getText()),Crowbar.isChecked());
+                setValue(String.valueOf(Crowbar.getText()), Crowbar.isChecked());
             }
         });
 
-        final ColorPickerView Color=mFloatingView.findViewById(R.id.color_picker_view);
-        if (getColorBox() == 100){
-            Color.setColor(android.graphics.Color.RED,true);
+        final ColorPickerView Color = mFloatingView.findViewById(R.id.color_picker_view);
+        if (getColorBox() == 100) {
+            Color.setColor(android.graphics.Color.RED, true);
             ESPView.ChangeColorBox(android.graphics.Color.RED);
-        }else{
-            Color.setColor(getColorBox(),true);
+        } else {
+            Color.setColor(getColorBox(), true);
             ESPView.ChangeColorBox(getColorBox());
         }
         Color.addOnColorChangedListener(new OnColorChangedListener() {
@@ -2629,12 +2629,12 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-        final ColorPickerView Color1=mFloatingView.findViewById(R.id.color_picker_viewskel);
-        if (getColorSkel() == 100){
-            Color1.setColor(android.graphics.Color.YELLOW,true);
+        final ColorPickerView Color1 = mFloatingView.findViewById(R.id.color_picker_viewskel);
+        if (getColorSkel() == 100) {
+            Color1.setColor(android.graphics.Color.YELLOW, true);
             ESPView.ChangeColorSkel(android.graphics.Color.YELLOW);
-        }else {
-            Color1.setColor(getColorSkel(),true);
+        } else {
+            Color1.setColor(getColorSkel(), true);
             ESPView.ChangeColorSkel(getColorSkel());
         }
         Color1.addOnColorChangedListener(new OnColorChangedListener() {
@@ -2645,12 +2645,12 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-        final ColorPickerView Color2=mFloatingView.findViewById(R.id.color_picker_viewhead);
-        if (getColorHead() == 100){
-            Color2.setColor(android.graphics.Color.RED,true);
+        final ColorPickerView Color2 = mFloatingView.findViewById(R.id.color_picker_viewhead);
+        if (getColorHead() == 100) {
+            Color2.setColor(android.graphics.Color.RED, true);
             ESPView.ChangeColorHead(android.graphics.Color.RED);
-        }else {
-            Color2.setColor(getColorHead(),true);
+        } else {
+            Color2.setColor(getColorHead(), true);
             ESPView.ChangeColorHead(getColorHead());
         }
         Color2.addOnColorChangedListener(new OnColorChangedListener() {
@@ -2661,12 +2661,12 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-        final ColorPickerView Color3=mFloatingView.findViewById(R.id.color_picker_viewline);
-        if (getColorLine() == 100){
-            Color3.setColor(android.graphics.Color.YELLOW,true);
+        final ColorPickerView Color3 = mFloatingView.findViewById(R.id.color_picker_viewline);
+        if (getColorLine() == 100) {
+            Color3.setColor(android.graphics.Color.YELLOW, true);
             ESPView.ChangeColorLine(android.graphics.Color.YELLOW);
-        }else{
-            Color3.setColor(getColorLine(),true);
+        } else {
+            Color3.setColor(getColorLine(), true);
             ESPView.ChangeColorLine(getColorLine());
         }
         Color3.addOnColorChangedListener(new OnColorChangedListener() {
@@ -2677,12 +2677,12 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-        final ColorPickerView Color4=mFloatingView.findViewById(R.id.color_picker_viewalert);
-        if (getColorAlert() == 100){
-            Color4.setColor(android.graphics.Color.argb(120,255,0,0),true);
-            ESPView.ChangeColorAlert(android.graphics.Color.argb(120,255,0,0));
-        }else {
-            Color4.setColor(getColorAlert(),true);
+        final ColorPickerView Color4 = mFloatingView.findViewById(R.id.color_picker_viewalert);
+        if (getColorAlert() == 100) {
+            Color4.setColor(android.graphics.Color.argb(120, 255, 0, 0), true);
+            ESPView.ChangeColorAlert(android.graphics.Color.argb(120, 255, 0, 0));
+        } else {
+            Color4.setColor(getColorAlert(), true);
             ESPView.ChangeColorAlert(getColorAlert());
         }
         Color4.addOnColorChangedListener(new OnColorChangedListener() {
@@ -2693,12 +2693,12 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-        final ColorPickerView Color5=mFloatingView.findViewById(R.id.color_picker_viewalerttext);
-        if (getColorAlertText() == 100){
-            Color5.setColor(android.graphics.Color.WHITE,true);
+        final ColorPickerView Color5 = mFloatingView.findViewById(R.id.color_picker_viewalerttext);
+        if (getColorAlertText() == 100) {
+            Color5.setColor(android.graphics.Color.WHITE, true);
             ESPView.ChangeColorAlertText(android.graphics.Color.WHITE);
-        }else {
-            Color5.setColor(getColorAlertText(),true);
+        } else {
+            Color5.setColor(getColorAlertText(), true);
             ESPView.ChangeColorAlertText(getColorAlertText());
         }
         Color5.addOnColorChangedListener(new OnColorChangedListener() {
@@ -2709,26 +2709,26 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-        final RadioButton fps1=mFloatingView.findViewById(R.id.fpsdefault);
-        final RadioButton fps2=mFloatingView.findViewById(R.id.fps60);
-        final RadioButton fps3=mFloatingView.findViewById(R.id.fps90);
-        final RadioButton fps4=mFloatingView.findViewById(R.id.fps120);
+        final RadioButton fps1 = mFloatingView.findViewById(R.id.fpsdefault);
+        final RadioButton fps2 = mFloatingView.findViewById(R.id.fps60);
+        final RadioButton fps3 = mFloatingView.findViewById(R.id.fps90);
+        final RadioButton fps4 = mFloatingView.findViewById(R.id.fps120);
 
         int CheckFps = getFps();
-        if (CheckFps == 30){
+        if (CheckFps == 30) {
             fps1.setChecked(true);
-        }else if (CheckFps == 60){
+        } else if (CheckFps == 60) {
             fps2.setChecked(true);
-        }else if (CheckFps == 90){
+        } else if (CheckFps == 90) {
             fps3.setChecked(true);
-        }else {
+        } else {
             fps4.setChecked(true);
         }
 
         fps1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     fps2.setChecked(false);
                     fps3.setChecked(false);
                     fps4.setChecked(false);
@@ -2741,7 +2741,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         fps2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     fps1.setChecked(false);
                     fps3.setChecked(false);
                     fps4.setChecked(false);
@@ -2754,7 +2754,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         fps3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     fps2.setChecked(false);
                     fps1.setChecked(false);
                     fps4.setChecked(false);
@@ -2767,7 +2767,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         fps4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     fps2.setChecked(false);
                     fps3.setChecked(false);
                     fps1.setChecked(false);
@@ -2777,75 +2777,72 @@ public class FloatLogo extends Service implements View.OnClickListener {
             }
         });
 
-        final ColorPickerView Color6=mFloatingView.findViewById(R.id.color_picker_viewisname);
-        final ColorPickerView Color7=mFloatingView.findViewById(R.id.color_picker_viewisDist);
-        final ColorPickerView Color8=mFloatingView.findViewById(R.id.color_picker_viewisEnemyWeapon);
+        final ColorPickerView Color6 = mFloatingView.findViewById(R.id.color_picker_viewisname);
+        final ColorPickerView Color7 = mFloatingView.findViewById(R.id.color_picker_viewisDist);
+        final ColorPickerView Color8 = mFloatingView.findViewById(R.id.color_picker_viewisEnemyWeapon);
 
-        final RadioButton set1=mFloatingView.findViewById(R.id.bgName);
-        final RadioButton set11=mFloatingView.findViewById(R.id.bgID);
-        final RadioButton set2=mFloatingView.findViewById(R.id.clrname);
-        final RadioButton set3=mFloatingView.findViewById(R.id.bgDist);
-        final RadioButton set4=mFloatingView.findViewById(R.id.clrDist);
-        final RadioButton set5=mFloatingView.findViewById(R.id.bgEnWeapon);
-        final RadioButton set6=mFloatingView.findViewById(R.id.clrEnWeapon);
+        final RadioButton set1 = mFloatingView.findViewById(R.id.bgName);
+        final RadioButton set11 = mFloatingView.findViewById(R.id.bgID);
+        final RadioButton set2 = mFloatingView.findViewById(R.id.clrname);
+        final RadioButton set3 = mFloatingView.findViewById(R.id.bgDist);
+        final RadioButton set4 = mFloatingView.findViewById(R.id.clrDist);
+        final RadioButton set5 = mFloatingView.findViewById(R.id.bgEnWeapon);
+        final RadioButton set6 = mFloatingView.findViewById(R.id.clrEnWeapon);
 
         set1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     set2.setChecked(false);
                     set11.setChecked(false);
                     if (getEnemyName() == 100) {
-                        Color6.setColor(android.graphics.Color.argb(180,0,0,0), true);
-                    }else {
+                        Color6.setColor(android.graphics.Color.argb(180, 0, 0, 0), true);
+                    } else {
                         Color6.setColor(getEnemyName(), true);
                     }
                 }
-
             }
         });
 
         set2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     set1.setChecked(false);
                     set11.setChecked(false);
                     if (getEnemyNameText() == 100) {
                         Color6.setColor(android.graphics.Color.WHITE, true);
-                    }else{
+                    } else {
                         Color6.setColor(getEnemyNameText(), true);
                     }
                 }
-
             }
         });
 
         set11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     set1.setChecked(false);
                     set2.setChecked(false);
-                    if (getIDBgt() == 100){
-                        Color6.setColor(android.graphics.Color.BLUE,true);
-                    }else {
-                        Color6.setColor(getIDBgt(),true);
+                    if (getIDBgt() == 100) {
+                        Color6.setColor(android.graphics.Color.BLUE, true);
+                    } else {
+                        Color6.setColor(getIDBgt(), true);
                     }
                 }
-
             }
         });
 
         set3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     set4.setChecked(false);
-                    if (getEnemyDistance() == 100){
-                        Color7.setColor(android.graphics.Color.RED,true);
-                    }else{
-                        Color7.setColor(getEnemyDistance(),true);
+                    if (getEnemyDistance() == 100) {
+                        Color7.setColor(android.graphics.Color.RED, true);
+                    } else {
+                        Color7.setColor(getEnemyDistance(), true);
                     }
                 }
             }
@@ -2854,27 +2851,26 @@ public class FloatLogo extends Service implements View.OnClickListener {
         set4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     set3.setChecked(false);
-                    if (getEnemyDistanceText() == 100){
-                        Color7.setColor(android.graphics.Color.WHITE,true);
-                    }else{
-                        Color7.setColor(getEnemyDistanceText(),true);
+                    if (getEnemyDistanceText() == 100) {
+                        Color7.setColor(android.graphics.Color.WHITE, true);
+                    } else {
+                        Color7.setColor(getEnemyDistanceText(), true);
                     }
                 }
-
             }
         });
 
         set5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     set6.setChecked(false);
-                    if (getEnemyWeapon() == 100){
-                        Color8.setColor(android.graphics.Color.argb(180,0,0,0),true);
-                    }else{
-                        Color8.setColor(getEnemyWeapon(),true);
+                    if (getEnemyWeapon() == 100) {
+                        Color8.setColor(android.graphics.Color.argb(180, 0, 0, 0), true);
+                    } else {
+                        Color8.setColor(getEnemyWeapon(), true);
                     }
                 }
             }
@@ -2883,25 +2879,24 @@ public class FloatLogo extends Service implements View.OnClickListener {
         set6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     set5.setChecked(false);
-                    if (getEnemyWeaponText() == 100){
-                        Color8.setColor(android.graphics.Color.WHITE,true);
-                    }else {
-                        Color8.setColor(getEnemyWeaponText(),true);
+                    if (getEnemyWeaponText() == 100) {
+                        Color8.setColor(android.graphics.Color.WHITE, true);
+                    } else {
+                        Color8.setColor(getEnemyWeaponText(), true);
                     }
                 }
-
             }
         });
 
-        if (getEnemyName() == 100 && getIDBgt() == 100 && getEnemyNameText() == 100){
-            Color6.setColor(android.graphics.Color.WHITE,true);
-            ESPView.ChangeBgName(android.graphics.Color.argb(180,0,0,0));
+        if (getEnemyName() == 100 && getIDBgt() == 100 && getEnemyNameText() == 100) {
+            Color6.setColor(android.graphics.Color.WHITE, true);
+            ESPView.ChangeBgName(android.graphics.Color.argb(180, 0, 0, 0));
             ESPView.ChangeBgId(android.graphics.Color.BLUE);
             ESPView.ChangeTextName(android.graphics.Color.WHITE);
-        }else {
-            Color6.setColor(getEnemyName(),true);
+        } else {
+            Color6.setColor(getEnemyName(), true);
             ESPView.ChangeBgName(getEnemyName());
             ESPView.ChangeBgId(getIDBgt());
             ESPView.ChangeTextName(getEnemyNameText());
@@ -2912,22 +2907,22 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 if (set1.isChecked()) {
                     setEnemyName(selectedColor);
                     ESPView.ChangeBgName(selectedColor);
-                }else if(set11.isChecked()){
+                } else if (set11.isChecked()) {
                     setIDBgt(selectedColor);
                     ESPView.ChangeBgId(selectedColor);
-                }else{
+                } else {
                     setEnemyNameText(selectedColor);
                     ESPView.ChangeTextName(selectedColor);
                 }
             }
         });
 
-        if (getEnemyDistance() == 100 && getEnemyNameText() == 100){
-            Color7.setColor(android.graphics.Color.RED,true);
+        if (getEnemyDistance() == 100 && getEnemyNameText() == 100) {
+            Color7.setColor(android.graphics.Color.RED, true);
             ESPView.ChangeBgDist(android.graphics.Color.RED);
             ESPView.ChangeTextDist(android.graphics.Color.WHITE);
-        }else {
-            Color7.setColor(getEnemyDistance(),true);
+        } else {
+            Color7.setColor(getEnemyDistance(), true);
             ESPView.ChangeBgDist(getEnemyDistance());
             ESPView.ChangeTextDist(getEnemyDistanceText());
         }
@@ -2937,19 +2932,19 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 if (set3.isChecked()) {
                     setEnemyDistance(selectedColor);
                     ESPView.ChangeBgDist(selectedColor);
-                }else{
+                } else {
                     setEnemyDistanceText(selectedColor);
                     ESPView.ChangeTextDist(selectedColor);
                 }
             }
         });
 
-        if (getEnemyWeapon() == 100 && getEnemyWeaponText() == 100){
-            Color8.setColor(android.graphics.Color.WHITE,true);
-            ESPView.ChangeBgEnWeapon(android.graphics.Color.argb(180,0,0,0));
+        if (getEnemyWeapon() == 100 && getEnemyWeaponText() == 100) {
+            Color8.setColor(android.graphics.Color.WHITE, true);
+            ESPView.ChangeBgEnWeapon(android.graphics.Color.argb(180, 0, 0, 0));
             ESPView.ChangeTextEnWeapon(android.graphics.Color.WHITE);
-        }else{
-            Color8.setColor(getEnemyWeapon(),true);
+        } else {
+            Color8.setColor(getEnemyWeapon(), true);
             ESPView.ChangeBgEnWeapon(getEnemyWeapon());
             ESPView.ChangeTextEnWeapon(getEnemyWeaponText());
         }
@@ -2959,7 +2954,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
                 if (set5.isChecked()) {
                     setEnemyWeapon(selectedColor);
                     ESPView.ChangeBgEnWeapon(selectedColor);
-                }else{
+                } else {
                     setEnemyWeaponText(selectedColor);
                     ESPView.ChangeTextEnWeapon(selectedColor);
                 }
@@ -2991,7 +2986,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         strokebox.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int fpsms=strokebox.getProgress();
+                int fpsms = strokebox.getProgress();
                 setStrokeBox(fpsms);
                 ESPView.ChangeStrokeBox(fpsms);
                 String a = String.valueOf(fpsms);
@@ -3000,12 +2995,10 @@ public class FloatLogo extends Service implements View.OnClickListener {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -3016,7 +3009,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         strokeskel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int fpsms=strokeskel.getProgress();
+                int fpsms = strokeskel.getProgress();
                 setStrokeSkeleton(fpsms);
                 ESPView.ChangeStrokeSkel(fpsms);
                 String a = String.valueOf(fpsms);
@@ -3025,12 +3018,10 @@ public class FloatLogo extends Service implements View.OnClickListener {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -3041,7 +3032,7 @@ public class FloatLogo extends Service implements View.OnClickListener {
         strokeline.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int fpsms=strokeline.getProgress();
+                int fpsms = strokeline.getProgress();
                 setStrokeLine(fpsms);
                 ESPView.ChangeStrokeLine(fpsms);
                 String a = String.valueOf(fpsms);
@@ -3050,12 +3041,10 @@ public class FloatLogo extends Service implements View.OnClickListener {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -3066,19 +3055,20 @@ public class FloatLogo extends Service implements View.OnClickListener {
         itemPosition.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int pos=itemPosition.getProgress();
+                int pos = itemPosition.getProgress();
                 setItemPosition(pos);
                 ESPView.ChangeitemPosition(pos);
                 String a = String.valueOf(pos);
                 itemPositionText.setText(a);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //write custom code to on start progress
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -3089,19 +3079,20 @@ public class FloatLogo extends Service implements View.OnClickListener {
         itemSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int pos=itemSize.getProgress();
+                int pos = itemSize.getProgress();
                 setItemSIze(pos);
                 ESPView.ChangeitemSize(pos);
                 String a = String.valueOf(pos);
                 itemSizeText.setText(a);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //write custom code to on start progress
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -3113,19 +3104,20 @@ public class FloatLogo extends Service implements View.OnClickListener {
         fps.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int fpsms=fps.getProgress();
+                int fpsms = fps.getProgress();
                 setFps(fpsms);
                 ESPView.ChangeFps(fpsms);
                 String a = String.valueOf(fpsms);
                 fpsText.setText(a);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //write custom code to on start progress
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -3136,19 +3128,20 @@ public class FloatLogo extends Service implements View.OnClickListener {
         position.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int pos=position.getProgress();
+                int pos = position.getProgress();
                 setPosition(pos);
                 ESPView.ChangePosition(pos);
                 String a = String.valueOf(pos);
                 positionText.setText(a);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //write custom code to on start progress
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -3159,28 +3152,26 @@ public class FloatLogo extends Service implements View.OnClickListener {
         size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int pos=size.getProgress();
+                int pos = size.getProgress();
                 setSize(pos);
                 ESPView.ChangeSize(pos);
                 String a = String.valueOf(pos);
                 sizeText.setText(a);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //write custom code to on start progress
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
     }
 
-
-    public native void SettingValue(int setting_code,boolean value);
-
-
+    public native void SettingValue(int setting_code, boolean value);
 }
 
 class SingleTapConfirm extends GestureDetector.SimpleOnGestureListener {
