@@ -488,6 +488,15 @@ public class ESPView extends View implements Runnable {
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
+                } else if (realItemName == "M249") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m249);
+                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 50, // Left
+                            posY - 70 - itemPosition, // Top
+                            null // Paint
+                    );
                 } else if (realItemName == "AWM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.awm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
@@ -641,13 +650,40 @@ public class ESPView extends View implements Runnable {
                             posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                } else if (realItemName == "Molotov") {
-                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                } else if (realItemName == "Grenade") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.frag_nad);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
-                            posY - 70 - itemPosition, // Top
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Smoke") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.smoke);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Stung") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.stun);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Molotov") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
                 } else if (realItemName == "Flare Gun") {
@@ -661,19 +697,19 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "AirDrop") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.air_drop);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
+                            posX - 30, // Left
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
                 } else if (realItemName == "DropPlane") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.plane);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
+                            posX - 30, // Left
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
@@ -823,7 +859,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -832,7 +868,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -841,7 +877,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -850,7 +886,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -859,7 +895,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -868,7 +904,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -877,7 +913,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -886,7 +922,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -895,7 +931,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1029,6 +1065,15 @@ public class ESPView extends View implements Runnable {
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
+                } else if (realItemName == "M249") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m249);
+                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 50, // Left
+                            posY - 70 - itemPosition, // Top
+                            null // Paint
+                    );
                 } else if (realItemName == "AWM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.awm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
@@ -1182,13 +1227,40 @@ public class ESPView extends View implements Runnable {
                             posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                } else if (realItemName == "Molotov") {
-                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                } else if (realItemName == "Grenade") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.frag_nad);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
-                            posY - 70 - itemPosition, // Top
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Smoke") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.smoke);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Stung") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.stun);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Molotov") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
                 } else if (realItemName == "Flare Gun") {
@@ -1202,19 +1274,19 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "AirDrop") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.air_drop);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
+                            posX - 30, // Left
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
                 } else if (realItemName == "DropPlane") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.plane);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
+                            posX - 30, // Left
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
@@ -1364,7 +1436,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1373,7 +1445,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1382,7 +1454,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1391,7 +1463,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1400,7 +1472,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1409,7 +1481,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1418,7 +1490,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1427,7 +1499,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1436,7 +1508,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1571,6 +1643,15 @@ public class ESPView extends View implements Runnable {
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
+                } else if (realItemName == "M249") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.m249);
+                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 50, // Left
+                            posY - 70 - itemPosition, // Top
+                            null // Paint
+                    );
                 } else if (realItemName == "AWM") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.awm);
                     out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
@@ -1724,13 +1805,40 @@ public class ESPView extends View implements Runnable {
                             posY - 85 - itemPosition, // Top
                             null // Paint
                     );
-                } else if (realItemName == "Molotov") {
-                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                } else if (realItemName == "Grenade") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.frag_nad);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
-                            posY - 70 - itemPosition, // Top
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Smoke") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.smoke);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Stung") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.stun);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realItemName == "Molotov") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.molotov);
+                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 30, // Left
+                            posY - 85 - itemPosition, // Top
                             null // Paint
                     );
                 } else if (realItemName == "Flare Gun") {
@@ -1744,19 +1852,19 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "AirDrop") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.air_drop);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
+                            posX - 30, // Left
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
                 } else if (realItemName == "DropPlane") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.plane);
-                    out = Bitmap.createScaledBitmap(bitmap, 100, 50, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
-                            posX - 50, // Left
+                            posX - 30, // Left
                             posY - 70 - itemPosition, // Top
                             null // Paint
                     );
@@ -1906,7 +2014,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1915,7 +2023,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1924,7 +2032,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Bag lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bag1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1933,7 +2041,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1942,7 +2050,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1951,7 +2059,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Vest lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vest1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1960,7 +2068,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 3") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet3);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1969,7 +2077,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 2") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet2);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -1978,7 +2086,7 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realItemName == "Helmet lvl 1") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.helmet1);
-                    out = Bitmap.createScaledBitmap(bitmap, 60, 60, false);
+                    out = Bitmap.createScaledBitmap(bitmap, 45, 60, false);
                     cvs.drawBitmap(
                             out, // Bitmap
                             posX - 40, // Left
@@ -2018,6 +2126,15 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realVehicleName == "UAZ") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.uaz);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realVehicleName == "Trike") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle_cart);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
@@ -2072,6 +2189,24 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realVehicleName == "Mirado") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mirado);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realVehicleName == "Scooter") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scooter);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realVehicleName == "Rony") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.rony);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
@@ -2161,6 +2296,15 @@ public class ESPView extends View implements Runnable {
                             posY - 80 - itemPosition, // Top
                             null // Paint
                     );
+                } else if (realVehicleName == "Trike") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle_cart);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
                 } else if (realVehicleName == "Bike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
@@ -2208,6 +2352,24 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realVehicleName == "Mirado") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mirado);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realVehicleName == "Scooter") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scooter);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realVehicleName == "Rony") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.rony);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
@@ -2298,6 +2460,15 @@ public class ESPView extends View implements Runnable {
                             posY - 80 - itemPosition, // Top
                             null // Paint
                     );
+                } else if (realVehicleName == "Trike") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle_cart);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
                 } else if (realVehicleName == "Bike") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.motocycle);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
@@ -2345,6 +2516,24 @@ public class ESPView extends View implements Runnable {
                     );
                 } else if (realVehicleName == "Mirado") {
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mirado);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realVehicleName == "Scooter") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scooter);
+                    out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    cvs.drawBitmap(
+                            out, // Bitmap
+                            posX - 20, // Left
+                            posY - 80 - itemPosition, // Top
+                            null // Paint
+                    );
+                } else if (realVehicleName == "Rony") {
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.rony);
                     out = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
                     cvs.drawBitmap(
                             out, // Bitmap
